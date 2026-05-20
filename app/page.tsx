@@ -38,10 +38,10 @@ const projects = [
 ];
 
 const experiences = [
-  { company: "Hurix Systems", role: "Data Analyst", period: "2024 - Present" },
+  { company: "Hurix Systems", role: "Data Associate", period: "2024 - Present" },
   { company: "Unified Mentor", role: "Business Analytics Intern", period: "2023 - 2024" },
-  { company: "GodSend Technology", role: "Data Science Trainee", period: "2023" },
-  { company: "Flex India", role: "Operations Analyst Intern", period: "2022" },
+  { company: "GodSend Technology", role: "IT Support & Data Ececutive", period: "2023" },
+  { company: "Flex India", role: "Production Engineer", period: "2022" },
 ];
 
 export default function Home() {
