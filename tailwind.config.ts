@@ -34,7 +34,7 @@ const config: Config = {
       },
     },
   },
-  darkMode: false,
+  darkMode: "media",
   plugins: [],
 };
 
