@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -30,12 +29,14 @@ body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#0D1B2A;line-heig
   --green:#22A05B;
   --red:#E5484D;
   --shadow-sm:0 1px 3px rgba(13,27,42,0.06),0 1px 2px rgba(13,27,42,0.04);
-  --shadow-md:0 4px 16px rgba(13,27,42,0.08),0 2px 6px rgba(13,27,42,0.05);
-  --shadow-lg:0 12px 40px rgba(13,27,42,0.12),0 4px 12px rgba(13,27,42,0.06);
+  --shadow-md:0 10px 25px -5px rgba(13,27,42,0.08),0 8px 16px -6px rgba(13,27,42,0.05);
+  --shadow-lg:0 20px 40px -10px rgba(13,27,42,0.18),0 12px 20px -8px rgba(13,27,42,0.08);
   --radius-sm:6px;
   --radius-md:10px;
   --radius-lg:16px;
   --radius-xl:24px;
+  --elastic-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --smooth-fluid: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* ── TYPOGRAPHY ─────────────────────────────────────────── */
@@ -97,20 +98,23 @@ nav{
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{
   font-size:0.88rem;font-weight:500;color:var(--gray-600);
-  transition:color 0.2s;position:relative;
+  transition:color 0.3s var(--smooth-fluid);position:relative;
 }
 .nav-links a:hover{color:var(--navy)}
 .nav-links a::after{
-  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
-  background:var(--amber);transition:width 0.2s;border-radius:2px;
+  content:'';position:absolute;bottom:-4px;left:50%;width:0;height:2px;
+  background:var(--amber);transition:all 0.3s var(--elastic-bounce);
+  border-radius:2px;transform:translateX(-50%);
 }
 .nav-links a:hover::after{width:100%}
+.nav-links a.active-label{color:var(--navy);font-weight:600}
+.nav-links a.active-label::after{width:100%}
 .nav-cta{
   background:var(--navy);color:var(--white)!important;
   padding:8px 18px;border-radius:var(--radius-sm);
-  font-size:0.85rem!important;transition:background 0.2s!important;
+  font-size:0.85rem!important;transition:all 0.3s var(--smooth-fluid)!important;
 }
-.nav-cta:hover{background:var(--amber-dark)!important;color:var(--white)!important}
+.nav-cta:hover{background:var(--amber-dark)!important;color:var(--white)!important;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
 .nav-cta::after{display:none!important}
 .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
 .hamburger span{width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all 0.3s}
@@ -141,7 +145,15 @@ nav{
 }
 .hero-eyebrow svg{width:14px;height:14px}
 #hero h1{margin-bottom:14px;letter-spacing:-0.02em}
-#hero h1 em{font-style:normal;color:var(--amber)}
+#hero h1 em{
+  font-style:normal;
+  color:var(--amber);
+  display:inline-block;
+  transition:transform 0.3s var(--elastic-bounce);
+}
+#hero h1:hover em {
+  transform:scale(1.1) rotate(-2deg);
+}
 .typewriter-wrap{
   font-size:clamp(1rem,2vw,1.2rem);
   color:var(--gray-600);margin-bottom:24px;
@@ -158,6 +170,11 @@ nav{
   padding:6px 14px;border-radius:20px;margin-bottom:28px;
   font-size:0.82rem;color:var(--gray-600);
   box-shadow:var(--shadow-sm);
+  transition:all 0.3s var(--smooth-fluid);
+}
+.hero-rating:hover {
+  transform:scale(1.05);
+  box-shadow:var(--shadow-md);
 }
 .stars-display{color:#F5A623;letter-spacing:1px;font-size:0.9rem}
 .hero-rating strong{color:var(--navy)}
@@ -167,19 +184,19 @@ nav{
   background:var(--navy);color:var(--white);
   padding:12px 26px;border-radius:var(--radius-sm);
   font-size:0.92rem;font-weight:600;
-  transition:all 0.2s;border:2px solid var(--navy);
+  transition:all 0.3s var(--elastic-bounce);border:2px solid var(--navy);
   font-family:'DM Sans',sans-serif;cursor:pointer;
 }
-.btn-primary:hover{background:var(--amber-dark);border-color:var(--amber-dark)}
+.btn-primary:hover{background:var(--amber-dark);border-color:var(--amber-dark);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .btn-secondary{
   display:inline-flex;align-items:center;gap:8px;
   background:transparent;color:var(--navy);
   padding:12px 26px;border-radius:var(--radius-sm);
   font-size:0.92rem;font-weight:600;
   border:2px solid var(--gray-200);
-  transition:all 0.2s;font-family:'DM Sans',sans-serif;cursor:pointer;
+  transition:all 0.3s var(--smooth-fluid);font-family:'DM Sans',sans-serif;cursor:pointer;
 }
-.btn-secondary:hover{border-color:var(--navy);background:var(--gray-50)}
+.btn-secondary:hover{border-color:var(--navy);background:var(--gray-50);transform:translateY(-2px)}
 .btn-wa{
   background:#25D366;border-color:#25D366;color:#fff;
 }
@@ -199,12 +216,20 @@ nav{
 .why-item{
   display:flex;align-items:flex-start;gap:14px;
   color:var(--white);
+  transition:transform 0.3s var(--smooth-fluid);
+}
+.why-item:hover {
+  transform:translateX(4px);
 }
 .why-icon{
   width:40px;height:40px;border-radius:var(--radius-sm);
   background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
   font-size:1.1rem;
+  transition:transform 0.3s var(--elastic-bounce);
+}
+.why-item:hover .why-icon {
+  transform:scale(1.15) rotate(8deg);
 }
 .why-item h4{font-family:'Syne',sans-serif;font-size:0.95rem;color:#fff;margin-bottom:2px}
 .why-item p{font-size:0.82rem;color:rgba(255,255,255,0.55);line-height:1.5}
@@ -231,6 +256,10 @@ nav{
   font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
   display:flex;align-items:center;justify-content:center;
   margin:0 auto 16px;box-shadow:0 0 0 6px var(--amber-light);
+  transition:transform 0.4s var(--elastic-bounce);
+}
+.how-card:hover .how-num {
+  transform:scale(1.1) rotate(360deg);
 }
 .how-card h3{margin-bottom:8px;font-size:1rem}
 .how-card p{font-size:0.85rem;color:var(--gray-400)}
@@ -250,6 +279,7 @@ nav{
   font-family:'Syne',sans-serif;font-weight:700;
   padding:8px 18px;border-radius:var(--radius-sm);font-size:0.9rem;
   white-space:nowrap;
+  animation:pulse 2s infinite;
 }
 .pricing-toggle{
   display:flex;align-items:center;gap:12px;margin-bottom:36px;
@@ -258,13 +288,13 @@ nav{
 .toggle-btn{
   position:relative;width:46px;height:24px;
   background:var(--gray-200);border-radius:12px;cursor:pointer;
-  border:none;transition:background 0.2s;flex-shrink:0;
+  border:none;transition:background 0.3s var(--smooth-fluid);flex-shrink:0;
 }
 .toggle-btn.active{background:var(--navy)}
 .toggle-knob{
   position:absolute;top:3px;left:3px;
   width:18px;height:18px;border-radius:50%;background:#fff;
-  transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);
+  transition:transform 0.3s var(--elastic-bounce);box-shadow:0 1px 3px rgba(0,0,0,0.2);
 }
 .toggle-btn.active .toggle-knob {transform:translateX(22px)}
 .toggle-label.active-label{color:var(--navy);font-weight:600}
@@ -280,9 +310,9 @@ nav{
 .s-card{
   background:var(--white);border:1px solid var(--gray-100);
   border-radius:var(--radius-lg);padding:22px 24px;
-  transition:all 0.2s;position:relative;overflow:hidden;
+  transition:all 0.3s var(--smooth-fluid);position:relative;overflow:hidden;
 }
-.s-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--gray-200)}
+.s-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--gray-200)}
 .s-card.featured{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber)}
 .s-card.featured::before{
   content:'Popular';position:absolute;top:14px;right:14px;
@@ -301,6 +331,10 @@ nav{
 .s-includes li{
   font-size:0.8rem;color:var(--gray-600);
   display:flex;align-items:flex-start;gap:7px;padding:2px 0;
+  transition:transform 0.2s var(--smooth-fluid);
+}
+.s-card:hover .s-includes li {
+  transform:translateX(2px);
 }
 .s-includes li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
 .s-pricing{display:flex;align-items:flex-end;gap:10px;margin-bottom:14px;flex-wrap:wrap}
@@ -318,16 +352,16 @@ nav{
   font-size:0.7rem;font-weight:700;background:#FEE2E2;color:var(--red);
   padding:2px 7px;border-radius:4px;letter-spacing:0.03em;
 }
-.s-deliverfont-size:0.75rem;color:var(--gray-400);margin-bottom:16px}
+.s-deliver{font-size:0.75rem;color:var(--gray-400);margin-bottom:16px}
 .s-deliver span{color:var(--navy);font-weight:500}
 .btn-quote{
   width:100%;padding:10px;border-radius:var(--radius-sm);
   background:var(--navy);color:var(--white);
   font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;
-  border:none;cursor:pointer;transition:all 0.2s;
+  border:none;cursor:pointer;transition:all 0.3s var(--smooth-fluid);
   display:flex;align-items:center;justify-content:center;gap:8px;
 }
-.btn-quote:hover{background:var(--amber-dark)}
+.btn-quote:hover{background:var(--amber-dark);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
 
 /* ── PROJECTS ───────────────────────────────────────────── */
 #projects{background:var(--white)}
@@ -335,24 +369,29 @@ nav{
 .filter-tab{
   padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500;
   border:1.5px solid var(--gray-200);color:var(--gray-600);
-  background:transparent;cursor:pointer;transition:all 0.2s;
+  background:transparent;cursor:pointer;transition:all 0.3s var(--smooth-fluid);
   font-family:'DM Sans',sans-serif;
 }
 .filter-tab:hover,.filter-tab.active{
   background:var(--navy);color:var(--white);border-color:var(--navy);
+  transform:scale(1.05);
 }
 .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .p-card{
   background:var(--off-white);border:1px solid var(--gray-100);
   border-radius:var(--radius-lg);padding:22px;
-  transition:all 0.2s;
+  transition:all 0.3s var(--smooth-fluid);
 }
-.p-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.p-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--gray-200)}
 .p-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
 .p-icon{
   width:38px;height:38px;border-radius:var(--radius-sm);
   background:var(--navy);color:var(--amber);
   display:flex;align-items:center;justify-content:center;font-size:1rem;
+  transition:transform 0.3s var(--elastic-bounce);
+}
+.p-card:hover .p-icon {
+  transform:scale(1.1) rotate(-4deg);
 }
 .github-stars{
   display:flex;align-items:center;gap:4px;
@@ -370,9 +409,9 @@ nav{
   flex:1;padding:8px;border-radius:var(--radius-sm);
   font-size:0.78rem;font-weight:600;text-align:center;
   border:1.5px solid var(--gray-200);color:var(--navy);
-  transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:5px;
+  transition:all 0.3s var(--smooth-fluid);display:flex;align-items:center;justify-content:center;gap:5px;
 }
-.p-link:hover{border-color:var(--navy);background:var(--navy);color:var(--white)}
+.p-link:hover{border-color:var(--navy);background:var(--navy);color:var(--white);transform:translateY(-2px)}
 .p-link.demo{background:var(--amber);border-color:var(--amber);color:var(--navy)}
 .p-link.demo:hover{background:var(--amber-dark);border-color:var(--amber-dark);color:var(--white)}
 
@@ -389,11 +428,57 @@ nav{
   margin-bottom:14px;display:flex;align-items:center;gap:8px;
 }
 .skill-group-title::after{content:'';flex:1;height:1px;background:var(--gray-100)}
-.skill-pills{display:flex;flex-wrap:wrap;gap:7px}
+.skill-pills{display:flex;flex-wrap:wrap;gap:8px}
+
+/* Core Brand Skill Cards */
 .skill-pill{
-  font-size:0.8rem;padding:5px 12px;border-radius:20px;
-  background:var(--gray-50);border:1px solid var(--gray-100);
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.85rem;padding:6px 14px;border-radius:20px;
+  background:var(--gray-50);border:1px solid var(--gray-200);
   color:var(--navy);font-weight:500;
+  transition:all 0.3s var(--elastic-bounce);cursor:default;
+}
+.skill-pill svg, .skill-pill img{
+  width:16px;height:16px;
+  object-fit:contain;
+  filter:grayscale(100%);
+  opacity:0.7;
+  transition:all 0.3s var(--smooth-fluid);
+}
+.skill-pill:hover{
+  background:var(--white);
+  border-color:var(--amber);
+  transform:scale(1.05) translateY(-2px);
+  box-shadow:var(--shadow-sm);
+}
+.skill-pill:hover svg, .skill-pill:hover img{
+  filter:grayscale(0%);
+  opacity:1;
+  transform:scale(1.1);
+}
+
+/* Styled Technique Pills */
+.skill-pill-tech {
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:0.8rem;padding:6px 14px;border-radius:6px;
+  background:var(--gray-50);color:var(--gray-600);
+  font-family:'DM Sans', sans-serif;font-weight:500;
+  border-left:3px solid var(--gray-400);
+  transition:all 0.3s var(--smooth-fluid);cursor:default;
+}
+.skill-pill-tech::before {
+  content:'</>';
+  font-family:monospace;font-size:0.75rem;
+  color:var(--gray-400);transition:color 0.3s var(--smooth-fluid);
+}
+.skill-pill-tech:hover {
+  background:var(--navy);color:var(--white);
+  border-left-color:var(--amber);
+  transform:translateX(4px);
+  box-shadow:var(--shadow-sm);
+}
+.skill-pill-tech:hover::before {
+  color:var(--amber);
 }
 
 /* ── EXPERIENCE ─────────────────────────────────────────── */
@@ -410,8 +495,12 @@ nav{
   width:16px;height:16px;border-radius:50%;
   background:var(--white);border:2px solid var(--amber);
   box-shadow:0 0 0 3px var(--amber-light);
+  transition:all 0.3s var(--elastic-bounce);
 }
-.tl-item.current .tl-dot{background:var(--amber)}
+.tl-item:hover .tl-dot {
+  background:var(--amber);
+  transform:scale(1.2);
+}
 .tl-date{font-size:0.75rem;color:var(--amber-dark);font-weight:600;margin-bottom:4px;letter-spacing:0.03em}
 .tl-role{font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:2px}
 .tl-company{font-size:0.85rem;color:var(--gray-600);margin-bottom:6px}
@@ -432,6 +521,10 @@ nav{
 .review-card{
   background:var(--white);border:1px solid var(--gray-100);
   border-radius:var(--radius-lg);padding:20px;
+  transition:transform 0.3s var(--smooth-fluid);
+}
+.review-card:hover {
+  transform:translateY(-4px);
 }
 .review-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
 .reviewer-info h4{font-size:0.9rem;font-weight:600;color:var(--navy);margin-bottom:2px}
@@ -457,9 +550,13 @@ nav{
 .star-picker{display:flex;gap:6px;margin-bottom:20px}
 .star-picker span{
   font-size:1.6rem;cursor:pointer;color:var(--gray-200);
-  transition:color 0.15s;line-height:1;
+  transition:transform 0.2s var(--elastic-bounce), color 0.15s ease;
+  line-height:1;
 }
-.star-picker span.selected,.star-picker span:hover{color:var(--amber)}
+.star-picker span.selected, .star-picker span:hover {
+  transform:scale(1.3) rotate(15deg);
+  color:var(--amber);
+}
 
 /* ── CONTACT ─────────────────────────────────────────────── */
 #contact{background:var(--navy)}
@@ -474,6 +571,11 @@ nav{
   width:42px;height:42px;border-radius:var(--radius-sm);
   background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
   display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+  transition:all 0.3s var(--elastic-bounce);
+}
+.contact-info-item:hover .contact-icon {
+  background:var(--amber);color:var(--navy);
+  transform:scale(1.1) rotate(-8deg);
 }
 .contact-info-item h4{font-size:0.82rem;color:rgba(255,255,255,0.45);margin-bottom:2px;font-family:'DM Sans',sans-serif}
 .contact-info-item a,.contact-info-item p{font-size:0.92rem;color:rgba(255,255,255,0.9);margin:0}
@@ -493,7 +595,7 @@ nav{
   border:1px solid rgba(255,255,255,0.12);
   border-radius:var(--radius-sm);color:var(--white);
   font-family:'DM Sans',sans-serif;font-size:0.9rem;
-  transition:border-color 0.2s;outline:none;
+  transition:all 0.3s var(--smooth-fluid);outline:none;
 }
 .form-group.light input,.form-group.light textarea,.form-group.light select{
   background:var(--gray-50);border-color:var(--gray-200);
@@ -501,19 +603,34 @@ nav{
 }
 .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.3)}
 .form-group.light input::placeholder,.form-group.light textarea::placeholder{color:var(--gray-400)}
+
+/* FIXED: Text input color contrast flip & Select options dropdown fix */
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{
   border-color:var(--amber);
+  box-shadow:0 0 0 3px rgba(245,166,35,0.15);
+  background:var(--white);
+  color:var(--navy);
 }
-.form-group.light select option{background:var(--white);color:var(--navy)}
+
+/* FIXED: Target native options structure across cross-platform browsers to enforce a dark menu background with crisp white text labels */
+.form-group select option {
+  background-color:#0D1B2A !important;
+  color:#FFFFFF !important;
+}
+.form-group.light select option {
+  background-color:#FFFFFF !important;
+  color:#0D1B2A !important;
+}
+
 .form-group textarea{resize:vertical;min-height:110px}
 .btn-submit{
   background:var(--amber);color:var(--navy);
   padding:12px 28px;border-radius:var(--radius-sm);
   font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:700;
-  border:none;cursor:pointer;transition:all 0.2s;
+  border:none;cursor:pointer;transition:all 0.3s var(--elastic-bounce);
   display:inline-flex;align-items:center;gap:8px;
 }
-.btn-submit:hover{background:#e09610;transform:translateY(-1px)}
+.btn-submit:hover{background:#e09610;transform:translateY(-2px);box-shadow:var(--shadow-md)}
 .btn-submit.dark{background:var(--navy);color:var(--white)}
 .btn-submit.dark:hover{background:var(--amber-dark)}
 .form-success{
@@ -522,6 +639,11 @@ nav{
   font-size:0.85rem;color:#22A05B;margin-top:10px;
 }
 .form-success.show{display:block}
+
+/* ── CONSTANT COLOR FOR TYPED USER FIELDS ON BREAKOUT ─────── */
+.form-group input:focus::placeholder, .form-group textarea:focus::placeholder {
+  color:var(--gray-400);
+}
 
 /* ── FOOTER ─────────────────────────────────────────────── */
 footer{
@@ -539,13 +661,17 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
   width:54px;height:54px;border-radius:50%;
   background:#25D366;box-shadow:0 4px 20px rgba(37,211,102,0.4);
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all 0.2s;text-decoration:none;
+  cursor:pointer;transition:all 0.3s var(--elastic-bounce);text-decoration:none;
 }
-.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.5)}
+.wa-float:hover{transform:scale(1.1) translateY(-4px);box-shadow:0 6px 28px rgba(37,211,102,0.5)}
 .wa-float svg{width:26px;height:26px;fill:#fff}
 
-/* ── SCROLL ANIMATIONS ───────────────────────────────────── */
-.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.55s ease,transform 0.55s ease}
+/* ── SCROLL ANIMATIONS (STAGGER ENGINE BACKED) ─────────────── */
+.fade-up{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.6s var(--smooth-fluid), transform 0.6s var(--smooth-fluid);
+}
 .fade-up.visible{opacity:1;transform:none}
 
 /* ── RESPONSIVE ──────────────────────────────────────────── */
@@ -568,13 +694,11 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BAR -->
 <div id="announce-bar">
   🎉 <strong>Launch Offer:</strong> <span>50% OFF</span> for the first 50 projects —
   <span class="slots" id="slots-left">47 slots left</span>
 </div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">
@@ -605,7 +729,6 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
   <a href="#contact" onclick="toggleMenu()">Contact</a>
 </div>
 
-<!-- HERO -->
 <section id="hero">
   <div class="container">
     <div class="hero-grid">
@@ -637,10 +760,9 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
   </div>
 </section>
 
-<!-- WHY HIRE ME -->
 <div id="why">
   <div class="container">
-    <div class="why-grid">
+    <div class="why-grid STAGGER_ITEMS">
       <div class="why-item fade-up">
         <div class="why-icon">✅</div>
         <div>
@@ -648,14 +770,14 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
           <p>Every project delivered within the agreed timeline. No exceptions.</p>
         </div>
       </div>
-      <div class="why-item fade-up" style="transition-delay:0.1s">
+      <div class="why-item fade-up">
         <div class="why-icon">📋</div>
         <div>
           <h4>Clean, documented work</h4>
           <p>Every file is organised, labelled and explained so you can use it independently.</p>
         </div>
       </div>
-      <div class="why-item fade-up" style="transition-delay:0.2s">
+      <div class="why-item fade-up">
         <div class="why-icon">🔁</div>
         <div>
           <h4>Free 1 revision included</h4>
@@ -666,24 +788,23 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
 <section id="how">
   <div class="container">
     <span class="section-label">Process</span>
     <h2 class="section-title">How it works</h2>
     <p class="section-sub">Simple, transparent, and fast — from your raw data to a finished deliverable in days.</p>
-    <div class="how-grid">
+    <div class="how-grid STAGGER_ITEMS">
       <div class="how-card fade-up">
         <div class="how-num">1</div>
         <h3>Share your data</h3>
         <p>Send your file, connect your source, or describe what you need. No tech knowledge required.</p>
       </div>
-      <div class="how-card fade-up" style="transition-delay:0.15s">
+      <div class="how-card fade-up">
         <div class="how-num">2</div>
         <h3>I build it</h3>
         <p>I clean, analyse, and build your dashboard, report, or automation pipeline — to your requirements.</p>
       </div>
-      <div class="how-card fade-up" style="transition-delay:0.3s">
+      <div class="how-card fade-up">
         <div class="how-num">3</div>
         <h3>You decide</h3>
         <p>Review the output. Ask for one revision if needed. Then take ownership of a finished, working product.</p>
@@ -692,7 +813,6 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
   </div>
 </section>
 
-<!-- SERVICES & PRICING -->
 <section id="services">
   <div class="container">
     <span class="section-label">Services & Pricing</span>
@@ -707,7 +827,6 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
       <div class="offer-slots" id="banner-slots">47 slots remaining</div>
     </div>
 
-    <!-- Toggle -->
     <div class="pricing-toggle">
       <span class="toggle-label active-label" id="lbl-one">One-time project</span>
       <button class="toggle-btn" id="price-toggle" onclick="togglePricing()" aria-label="Toggle pricing type">
@@ -716,10 +835,9 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
       <span class="toggle-label" id="lbl-ret">Monthly retainer</span>
     </div>
 
-    <!-- Tier 1 -->
     <div class="tier-section fade-up">
       <div class="tier-heading">Tier 1 — Spreadsheet analysis</div>
-      <div class="services-grid">
+      <div class="services-grid STAGGER_ITEMS">
         <div class="s-card">
           <div class="s-icon">📊</div>
           <h3>Excel / Google Sheets — Analysis only</h3>
@@ -765,10 +883,9 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
       </div>
     </div>
 
-    <!-- Tier 2 -->
     <div class="tier-section fade-up">
       <div class="tier-heading">Tier 2 — Automation & Engineering</div>
-      <div class="services-grid">
+      <div class="services-grid STAGGER_ITEMS">
         <div class="s-card">
           <div class="s-icon">🤖</div>
           <h3>Sheet Automation — Python</h3>
@@ -837,10 +954,9 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
       </div>
     </div>
 
-    <!-- Tier 3 -->
     <div class="tier-section fade-up">
       <div class="tier-heading">Tier 3 — BI Dashboards</div>
-      <div class="services-grid">
+      <div class="services-grid STAGGER_ITEMS">
         <div class="s-card">
           <div class="s-icon">📉</div>
           <h3>Basic BI Dashboard</h3>
@@ -886,7 +1002,6 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
       </div>
     </div>
 
-    <!-- Tier 4 -->
     <div class="tier-section fade-up">
       <div class="tier-heading">Tier 4 — AI Services</div>
       <div class="services-grid wide">
@@ -918,7 +1033,6 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
     <span class="section-label">Portfolio</span>
@@ -931,9 +1045,9 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
       <button class="filter-tab" onclick="filterProjects('ml',this)">ML / AI</button>
       <button class="filter-tab" onclick="filterProjects('mis',this)">MIS</button>
     </div>
-    <div class="projects-grid" id="projects-grid">
+    <div class="projects-grid STAGGER_ITEMS" id="projects-grid">
 
-      <div class="p-card fade-up" data-tags="ml,dashboard,automation" style="transition-delay:0.1s">
+      <div class="p-card fade-up" data-tags="ml,dashboard,automation">
         <div class="p-card-top">
           <div class="p-icon">🎯</div>
           <div class="github-stars" id="stars-jio">⭐ —</div>
@@ -965,7 +1079,7 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
         </div>
       </div>
 
-      <div class="p-card fade-up" data-tags="automation,dashboard" style="transition-delay:0.1s">
+      <div class="p-card fade-up" data-tags="automation,dashboard">
         <div class="p-card-top">
           <div class="p-icon">🌧️</div>
           <div class="github-stars" id="stars-rainfall">⭐ —</div>
@@ -997,7 +1111,7 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
         </div>
       </div>
 
-      <div class="p-card fade-up" data-tags="ml" style="transition-delay:0.1s">
+      <div class="p-card fade-up" data-tags="ml">
         <div class="p-card-top">
           <div class="p-icon">🏥</div>
           <div class="github-stars" id="stars-disease">⭐ —</div>
@@ -1028,7 +1142,7 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
         </div>
       </div>
 
-      <div class="p-card fade-up" data-tags="dashboard" style="transition-delay:0.1s">
+      <div class="p-card fade-up" data-tags="dashboard">
         <div class="p-card-top">
           <div class="p-icon">🌾</div>
           <div class="github-stars" id="stars-agri">⭐ —</div>
@@ -1047,59 +1161,94 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="container">
     <span class="section-label">Skills</span>
     <h2 class="section-title">Technical skills</h2>
     <p class="section-sub">Tools and techniques I use to get the job done.</p>
-    <div class="skills-grid">
+    <div class="skills-grid STAGGER_ITEMS">
+      
       <div class="skill-group fade-up">
         <div class="skill-group-title">Spreadsheet & BI Tools</div>
         <div class="skill-pills">
-          <span class="skill-pill">Excel Advanced</span>
-          <span class="skill-pill">Google Sheets</span>
-          <span class="skill-pill">Power BI</span>
-          <span class="skill-pill">Tableau</span>
-          <span class="skill-pill">Looker Studio</span>
-          <span class="skill-pill">Streamlit</span>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#107C41" width="16" height="16"><path d="M23 1.5a.5.5 0 00-.5-.5h-11a.5.5 0 00-.5.5v4h12v4zm-12 5v5h12v-5zm12 6h-12v5h12zm-12 6v4.5a.5.5 0 00.5.5h11a.5.5 0 00.5-.5V19.5zM1 6.5l8.5-2.5v16L1 17.5z"/></svg>
+            Excel Advanced
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#0F9D58" width="16" height="16"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 10h-4v4h-2v-4H6v-2h4V7h2v4h4v2z"/></svg>
+            Google Sheets
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#F2C811" width="16" height="16"><path d="M19 2h-4.5c-.83 0-1.5.67-1.5 1.5v17c0 .83.67 1.5 1.5 1.5H19c.83 0 1.5-.67 1.5-1.5v-17c0-.83-.67-1.5-1.5-1.5zM11.5 7H7c-.83 0-1.5.67-1.5 1.5v12c0 .83.67 1.5 1.5 1.5h4.5c.83 0 1.5-.67 1.5-1.5v-12c0-.83-.67-1.5-1.5-1.5z"/></svg>
+            Power BI
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#E97627" width="16" height="16"><path d="M12 2L2 22h20L12 2zm0 5l6.5 11.5h-13L12 7z"/></svg>
+            Tableau
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#4285F4" width="16" height="16"><circle cx="12" cy="12" r="10"/></svg>
+            Looker Studio
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#FF4B4B" width="16" height="16"><path d="M12 2L2 12h5v10h10V12h5L12 2z"/></svg>
+            Streamlit
+          </div>
         </div>
       </div>
-      <div class="skill-group fade-up" style="transition-delay:0.1s">
+
+      <div class="skill-group fade-up">
         <div class="skill-group-title">Languages & Databases</div>
         <div class="skill-pills">
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">SQL / MySQL</span>
-          <span class="skill-pill">PySpark</span>
-          <span class="skill-pill">Spark SQL</span>
-          <span class="skill-pill">Databricks</span>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#3776AB" width="16" height="16"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm-1 3.5h2v2h-2zm4 11.5h-6v-1h2v-5h-2v-1h4v6h2z"/></svg>
+            Python
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#00758F" width="16" height="16"><path d="M4 4h16v4H4zm0 6h16v4H4zm0 6h16v4H4z"/></svg>
+            SQL / MySQL
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#E25A2A" width="16" height="16"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            PySpark
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#FF6F00" width="16" height="16"><path d="M12 21l-9-5V8l9-5 9 5v8l-9 5z"/></svg>
+            Spark SQL
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="#FF3600" width="16" height="16"><path d="M12 2L2 22h20z"/></svg>
+            Databricks
+          </div>
         </div>
       </div>
-      <div class="skill-group fade-up" style="transition-delay:0.2s">
+
+      <div class="skill-group fade-up">
         <div class="skill-group-title">Techniques</div>
         <div class="skill-pills">
-          <span class="skill-pill">ETL Pipelines</span>
-          <span class="skill-pill">MIS Reporting</span>
-          <span class="skill-pill">EDA</span>
-          <span class="skill-pill">Dashboarding</span>
-          <span class="skill-pill">KPI Tracking</span>
-          <span class="skill-pill">Medallion Architecture</span>
-          <span class="skill-pill">Predictive Analytics</span>
-          <span class="skill-pill">NLP</span>
-          <span class="skill-pill">Machine Learning</span>
+          <span class="skill-pill-tech">ETL Pipelines</span>
+          <span class="skill-pill-tech">MIS Reporting</span>
+          <span class="skill-pill-tech">EDA</span>
+          <span class="skill-pill-tech">Dashboarding</span>
+          <span class="skill-pill-tech">KPI Tracking</span>
+          <span class="skill-pill-tech">Medallion Architecture</span>
+          <span class="skill-pill-tech">Predictive Analytics</span>
+          <span class="skill-pill-tech">NLP</span>
+          <span class="skill-pill-tech">Machine Learning</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
     <span class="section-label">Career</span>
     <h2 class="section-title">Work experience</h2>
     <p class="section-sub" style="margin-bottom:48px">A track record built across data, operations, and engineering roles.</p>
-    <div class="timeline">
+    <div class="timeline timeline-stagger STAGGER_ITEMS">
       <div class="tl-item current fade-up">
         <div class="tl-dot"></div>
         <div class="tl-date">NOV 2025 — PRESENT</div>
@@ -1132,7 +1281,6 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="container">
     <span class="section-label">Reviews</span>
@@ -1146,14 +1294,13 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
       </div>
     </div>
 
-    <div class="reviews-grid" id="reviews-grid">
+    <div class="reviews-grid STAGGER_ITEMS" id="reviews-grid">
       <div class="no-reviews">
         <div style="font-size:2rem;margin-bottom:8px">⭐</div>
         <div>No reviews yet — be the first client to leave one below!</div>
       </div>
     </div>
 
-    <!-- Review form -->
     <div class="review-form-wrap fade-up">
       <h3>Leave a review</h3>
       <p>Worked with me? I'd love your feedback.</p>
@@ -1192,21 +1339,22 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
           <label>Your review</label>
           <textarea id="r-message" placeholder="Tell others about your experience..." rows="3"></textarea>
         </div>
-        <button class="btn-submit dark" onclick="submitReview()">Submit Review ✓</button>
-        <div class="form-success" id="review-success">✅ Thank you! Your review has been submitted and will appear after approval.</div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+          <button class="btn-submit dark" onclick="submitReview()">Submit Review ✓</button>
+          <div class="form-success" id="review-success">✅ Thank you! Your review has been submitted and will appear after approval.</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <span class="section-label">Contact</span>
     <h2 class="section-title">Let's work together</h2>
     <p class="section-sub">Have a project in mind? Drop a message and I'll get back within 24 hours.</p>
     <div class="contact-grid">
-      <div>
+      <div class="STAGGER_ITEMS">
         <div class="contact-info-item fade-up">
           <div class="contact-icon">📧</div>
           <div>
@@ -1222,7 +1370,7 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
           </div>
         </div>
         <div class="contact-info-item fade-up">
-          <div class="contact-icon">💼</div>
+          <div class="contact-icon">🐙</div>
           <div>
             <h4>GitHub</h4>
             <a href="https://github.com/arun8nov" target="_blank">github.com/arun8nov</a>
@@ -1235,7 +1383,7 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
             <a href="https://wa.me/919791157153" target="_blank">+91-9791157153</a>
           </div>
         </div>
-        <div style="margin-top:24px">
+        <div class="fade-up" style="margin-top:24px">
           <a href="https://wa.me/919791157153?text=Hi%20Arun%2C%20I%27d%20like%20to%20discuss%20a%20project%20with%20you." target="_blank" class="btn-primary btn-wa">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Chat on WhatsApp
@@ -1254,7 +1402,6 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
               <input type="email" id="c-email" placeholder="your@email.com"/>
             </div>
           </div>
-          <!-- Added Phone Field Here -->
           <div class="form-group">
             <label>Contact Number</label>
             <input type="tel" id="c-phone" placeholder="e.g. +91 98765 43210"/>
@@ -1286,7 +1433,6 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p>Built by Arunprakash B · Chennai, India · 2026</p>
   <div class="footer-links">
@@ -1297,7 +1443,6 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
   </div>
 </footer>
 
-<!-- FLOATING WHATSAPP -->
 <a class="wa-float" href="https://wa.me/919791157153?text=Hi%20Arun%2C%20I%27m%20interested%20in%20your%20data%20analysis%20services!" target="_blank" title="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
@@ -1305,7 +1450,7 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
 <script>
 // ── CONFIG ── Using your live deployed URL
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzW_zPzTHB4fpQn862XDffjxuMvCVqGxKVVOYP9rTj5DYq07tv3bMruyUWY64wj-qc5QQ/exec';
-const WA_NUMBER = '919791157153'; // Fixed trailing country formatting
+const WA_NUMBER = '919791157153';
 
 // ── TYPEWRITER ──────────────────────────────────────────
 const roles = ['Data Analyst','Dashboard Builder','MIS Specialist','Python Automation Expert','BI Developer'];
@@ -1330,11 +1475,44 @@ function toggleMenu() {
   document.getElementById('mobile-menu').classList.toggle('open');
 }
 
-// ── SCROLL FADE ─────────────────────────────────────────
+// ── STAGGERED CASCADE SCROLL ENGINE ────────────────────────
 const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      if (e.target.classList.contains('STAGGER_ITEMS')) {
+        const children = e.target.querySelectorAll('.fade-up, .skill-pill, .skill-pill-tech, .tl-item, .contact-info-item');
+        children.forEach((child, index) => {
+          child.style.transitionDelay = `${index * 60}ms`;
+          child.classList.add('visible');
+        });
+      } else {
+        e.target.classList.add('visible');
+      }
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.fade-up:not(.STAGGER_ITEMS .fade-up), .STAGGER_ITEMS').forEach(el => io.observe(el));
+
+// ── ACTIVE SCROLL LINK TRACKING ──────────────────────────
+const sections = document.querySelectorAll('section, #hero');
+const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = window.scrollY;
+    const offset = sec.offsetTop - 120;
+    const height = sec.offsetHeight;
+    if (top >= offset && top < offset + height) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active-label', link.getAttribute('href') === `#${currentId}`);
+  });
+});
 
 // ── PROJECT FILTER ──────────────────────────────────────
 function filterProjects(tag, btn) {
@@ -1342,7 +1520,13 @@ function filterProjects(tag, btn) {
   btn.classList.add('active');
   document.querySelectorAll('.p-card').forEach(card => {
     const tags = card.dataset.tags || '';
-    card.style.display = (tag === 'all' || tags.includes(tag)) ? '' : 'none';
+    if (tag === 'all' || tags.includes(tag)) {
+      card.style.display = '';
+      setTimeout(() => card.classList.add('visible'), 50);
+    } else {
+      card.style.display = 'none';
+      card.classList.remove('visible');
+    }
   });
 }
 
@@ -1378,11 +1562,11 @@ function quoteWA(service) {
   window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
 }
 
-// ── CONTACT FORM ── UPDATED WITH PHONE INTERCEPT PIPELINE
+// ── CONTACT FORM WITH EMAIL CLIENT COUPLING ────────────────
 async function submitContact() {
   const name = document.getElementById('c-name').value.trim();
   const email = document.getElementById('c-email').value.trim();
-  const phone = document.getElementById('c-phone').value.trim(); // Captured phone field
+  const phone = document.getElementById('c-phone').value.trim();
   const service = document.getElementById('c-service').value;
   const message = document.getElementById('c-message').value.trim();
   
@@ -1391,8 +1575,8 @@ async function submitContact() {
     return; 
   }
 
-  // ACTION 1: Push payload securely to Google Sheets background worker
-  if (APPS_SCRIPT_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+  // FIXED: Standardized JavaScript explicit key properties to map perfectly into Google Sheet Apps Script triggers
+  if (APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbzW_zPzTHB4fpQn862XDffjxuMvCVqGxKVVOYP9rTj5DYq07tv3bMruyUWY64wj-qc5QQ/exec') {
     try {
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST', 
@@ -1400,23 +1584,22 @@ async function submitContact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           type: 'lead', 
-          name, 
-          email, 
-          phone, // Passing phone to sheet column arrays
-          service, 
-          message, 
+          name: name, 
+          email: email, 
+          phone: phone, 
+          service: service, 
+          message: message, 
           timestamp: new Date().toISOString() 
         })
       });
       document.getElementById('contact-success').classList.add('show');
     } catch(e) { 
-      console.error('Spreadsheet background pipeline failure...', e); 
+      console.error('Spreadsheet background trace dropped...', e); 
     }
   } else {
     document.getElementById('contact-success').classList.add('show');
   }
 
-  // ACTION 2: Pre-format direct local system mail app launch
   const myEmail = "arunbabuprakash@gmail.com";
   const subject = encodeURIComponent(`Project Brief: ${name} — ${service}`);
   
@@ -1431,13 +1614,11 @@ async function submitContact() {
     `Best regards,\n${name}`
   );
 
-  // Structural clearing
   document.getElementById('c-name').value = '';
   document.getElementById('c-email').value = '';
   document.getElementById('c-phone').value = '';
   document.getElementById('c-message').value = '';
 
-  // Trigger system app hook
   window.location.href = `mailto:${myEmail}?subject=${subject}&body=${emailBody}`;
 }
 
@@ -1448,7 +1629,7 @@ async function submitReview() {
   const message = document.getElementById('r-message').value.trim();
   if (!name || !service || !selectedStars || !message) { alert('Please fill all fields and select a star rating.'); return; }
   
-  if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+  if (APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzW_zPzTHB4fpQn862XDffjxuMvCVqGxKVVOYP9rTj5DYq07tv3bMruyUWY64wj-qc5QQ/exec') {
     document.getElementById('review-success').classList.add('show');
     return;
   }
@@ -1469,7 +1650,7 @@ async function submitReview() {
 
 // ── LOAD APPROVED REVIEWS ────────────────────────────────
 async function loadReviews() {
-  if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+  if (APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzW_zPzTHB4fpQn862XDffjxuMvCVqGxKVVOYP9rTj5DYq07tv3bMruyUWY64wj-qc5QQ/exec') return;
   try {
     const res = await fetch(APPS_SCRIPT_URL + '?type=reviews');
     const data = await res.json();
