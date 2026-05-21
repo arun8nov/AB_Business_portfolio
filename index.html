@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Arunprakash B — Data Analyst, Dashboard Builder & MIS Specialist based in Chennai. Excel, Power BI, Tableau, Python automation, SQL, Data Engineering, AI integration."/>
+<title>Arunprakash B — Data Analyst & Dashboard Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET & BASE ───────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#0D1B2A;line-height:1.6;overflow-x:hidden}
+
+/* ── CSS VARIABLES ──────────────────────────────────────── */
+:root{
+  --navy:#0D1B2A;
+  --amber:#F5A623;
+  --amber-light:#FEF3D7;
+  --amber-dark:#C47F0A;
+  --white:#FFFFFF;
+  --off-white:#FAFAF8;
+  --gray-50:#F7F7F5;
+  --gray-100:#EFEFEB;
+  --gray-200:#DDDDD6;
+  --gray-400:#9A9A8E;
+  --gray-600:#5C5C52;
+  --green:#22A05B;
+  --red:#E5484D;
+  --shadow-sm:0 1px 3px rgba(13,27,42,0.06),0 1px 2px rgba(13,27,42,0.04);
+  --shadow-md:0 4px 16px rgba(13,27,42,0.08),0 2px 6px rgba(13,27,42,0.05);
+  --shadow-lg:0 12px 40px rgba(13,27,42,0.12),0 4px 12px rgba(13,27,42,0.06);
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:16px;
+  --radius-xl:24px;
+}
+
+/* ── TYPOGRAPHY ─────────────────────────────────────────── */
+h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.2;color:var(--navy)}
+h1{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700}
+h3{font-size:1.1rem;font-weight:600}
+p{color:var(--gray-600);line-height:1.7}
+a{text-decoration:none;color:inherit}
+
+/* ── LAYOUT ─────────────────────────────────────────────── */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+
+/* ── ANNOUNCEMENT BAR ───────────────────────────────────── */
+#announce-bar{
+  background:var(--navy);color:var(--white);
+  text-align:center;padding:10px 24px;
+  font-size:0.85rem;font-family:'DM Sans',sans-serif;
+  position:relative;z-index:200;
+}
+#announce-bar span{color:var(--amber);font-weight:600}
+#announce-bar .slots{
+  display:inline-block;background:var(--amber);color:var(--navy);
+  font-weight:700;padding:1px 8px;border-radius:4px;margin-left:4px;
+  font-size:0.8rem;
+}
+
+/* ── NAV ────────────────────────────────────────────────── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,250,248,0.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--gray-100);
+  padding:0 24px;
+}
+.nav-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:62px;
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;
+  color:var(--navy);display:flex;align-items:center;gap:8px;
+}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--amber);display:inline-block}
+.avail-badge{
+  display:flex;align-items:center;gap:6px;
+  background:var(--green);color:#fff;
+  font-size:0.72rem;font-weight:600;
+  padding:3px 10px;border-radius:20px;
+  letter-spacing:0.02em;
+}
+.avail-badge .pulse{
+  width:6px;height:6px;border-radius:50%;background:#fff;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{
+  font-size:0.88rem;font-weight:500;color:var(--gray-600);
+  transition:color 0.2s;position:relative;
+}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:var(--amber);transition:width 0.2s;border-radius:2px;
+}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  background:var(--navy);color:var(--white)!important;
+  padding:8px 18px;border-radius:var(--radius-sm);
+  font-size:0.85rem!important;transition:background 0.2s!important;
+}
+.nav-cta:hover{background:var(--amber-dark)!important;color:var(--white)!important}
+.nav-cta::after{display:none!important}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all 0.3s}
+.mobile-menu{
+  display:none;position:fixed;inset:0;background:var(--white);z-index:99;
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:600;color:var(--navy)}
+
+/* ── HERO ───────────────────────────────────────────────── */
+#hero{
+  padding:90px 0 80px;
+  background:var(--off-white);
+  position:relative;overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  text-align:center;align-items:center;gap:40px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--amber-light);border:1px solid #F5D07A;
+  color:var(--amber-dark);font-size:0.8rem;font-weight:600;
+  padding:5px 14px;border-radius:20px;margin-bottom:20px;
+  letter-spacing:0.04em;text-transform:uppercase;
+}
+.hero-eyebrow svg{width:14px;height:14px}
+#hero h1{margin-bottom:14px;letter-spacing:-0.02em}
+#hero h1 em{font-style:normal;color:var(--amber)}
+.typewriter-wrap{
+  font-size:clamp(1rem,2vw,1.2rem);
+  color:var(--gray-600);margin-bottom:24px;
+  min-height:1.8em;
+}
+.typewriter{color:var(--navy);font-weight:600;border-right:2px solid var(--amber)}
+.hero-desc{
+  font-size:1rem;color:var(--gray-600);
+  max-width:520px;margin:0 auto 32px;line-height:1.75;
+}
+.hero-rating{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--white);border:1px solid var(--gray-100);
+  padding:6px 14px;border-radius:20px;margin-bottom:28px;
+  font-size:0.82rem;color:var(--gray-600);
+  box-shadow:var(--shadow-sm);
+}
+.stars-display{color:#F5A623;letter-spacing:1px;font-size:0.9rem}
+.hero-rating strong{color:var(--navy)}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--navy);color:var(--white);
+  padding:12px 26px;border-radius:var(--radius-sm);
+  font-size:0.92rem;font-weight:600;
+  transition:all 0.2s;border:2px solid var(--navy);
+  font-family:'DM Sans',sans-serif;cursor:pointer;
+}
+.btn-primary:hover{background:var(--amber-dark);border-color:var(--amber-dark)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--navy);
+  padding:12px 26px;border-radius:var(--radius-sm);
+  font-size:0.92rem;font-weight:600;
+  border:2px solid var(--gray-200);
+  transition:all 0.2s;font-family:'DM Sans',sans-serif;cursor:pointer;
+}
+.btn-secondary:hover{border-color:var(--navy);background:var(--gray-50)}
+.btn-wa{
+  background:#25D366;border-color:#25D366;color:#fff;
+}
+.btn-wa:hover{background:#1EB85A;border-color:#1EB85A}
+/* dot grid bg */
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,var(--gray-200) 1px,transparent 1px);
+  background-size:28px 28px;opacity:0.5;pointer-events:none;
+}
+
+/* ── WHY HIRE ME ────────────────────────────────────────── */
+#why{background:var(--navy);padding:40px 0}
+.why-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.why-item{
+  display:flex;align-items:flex-start;gap:14px;
+  color:var(--white);
+}
+.why-icon{
+  width:40px;height:40px;border-radius:var(--radius-sm);
+  background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:1.1rem;
+}
+.why-item h4{font-family:'Syne',sans-serif;font-size:0.95rem;color:#fff;margin-bottom:2px}
+.why-item p{font-size:0.82rem;color:rgba(255,255,255,0.55);line-height:1.5}
+
+/* ── HOW IT WORKS ───────────────────────────────────────── */
+#how{background:var(--white)}
+.section-label{
+  font-size:0.75rem;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--amber-dark);
+  margin-bottom:8px;display:block;
+}
+.section-title{margin-bottom:12px}
+.section-sub{color:var(--gray-600);font-size:0.95rem;margin-bottom:48px;max-width:500px}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative}
+.how-grid::before{
+  content:'';position:absolute;top:28px;left:calc(16.66% + 20px);
+  width:calc(66.66% - 40px);height:1px;
+  background:var(--gray-200);z-index:0;
+}
+.how-card{text-align:center;position:relative;z-index:1}
+.how-num{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--amber);color:var(--navy);
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 16px;box-shadow:0 0 0 6px var(--amber-light);
+}
+.how-card h3{margin-bottom:8px;font-size:1rem}
+.how-card p{font-size:0.85rem;color:var(--gray-400)}
+
+/* ── SERVICES ───────────────────────────────────────────── */
+#services{background:var(--off-white)}
+.offer-banner{
+  background:linear-gradient(135deg,var(--amber) 0%,#F7C460 100%);
+  border-radius:var(--radius-lg);padding:18px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:40px;flex-wrap:wrap;gap:12px;
+}
+.offer-banner-text h3{font-size:1rem;color:var(--navy);margin-bottom:2px}
+.offer-banner-text p{font-size:0.82rem;color:rgba(13,27,42,0.65);margin:0}
+.offer-slots{
+  background:var(--navy);color:var(--white);
+  font-family:'Syne',sans-serif;font-weight:700;
+  padding:8px 18px;border-radius:var(--radius-sm);font-size:0.9rem;
+  white-space:nowrap;
+}
+.pricing-toggle{
+  display:flex;align-items:center;gap:12px;margin-bottom:36px;
+  font-size:0.88rem;font-weight:500;color:var(--gray-600);
+}
+.toggle-btn{
+  position:relative;width:46px;height:24px;
+  background:var(--gray-200);border-radius:12px;cursor:pointer;
+  border:none;transition:background 0.2s;flex-shrink:0;
+}
+.toggle-btn.active{background:var(--navy)}
+.toggle-knob{
+  position:absolute;top:3px;left:3px;
+  width:18px;height:18px;border-radius:50%;background:#fff;
+  transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);
+}
+.toggle-btn.active .toggle-knob{transform:translateX(22px)}
+.toggle-label.active-label{color:var(--navy);font-weight:600}
+.tier-section{margin-bottom:40px}
+.tier-heading{
+  font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-400);
+  margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.tier-heading::after{content:'';flex:1;height:1px;background:var(--gray-100)}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.services-grid.wide{grid-template-columns:1fr}
+.s-card{
+  background:var(--white);border:1px solid var(--gray-100);
+  border-radius:var(--radius-lg);padding:22px 24px;
+  transition:all 0.2s;position:relative;overflow:hidden;
+}
+.s-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--gray-200)}
+.s-card.featured{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber)}
+.s-card.featured::before{
+  content:'Popular';position:absolute;top:14px;right:14px;
+  background:var(--amber);color:var(--navy);
+  font-size:0.68rem;font-weight:700;padding:2px 8px;border-radius:4px;
+  letter-spacing:0.05em;text-transform:uppercase;
+}
+.s-icon{
+  width:40px;height:40px;border-radius:var(--radius-sm);
+  background:var(--amber-light);display:flex;align-items:center;
+  justify-content:center;margin-bottom:14px;font-size:1.1rem;
+}
+.s-card h3{font-size:0.97rem;margin-bottom:6px}
+.s-card .s-desc{font-size:0.82rem;color:var(--gray-400);margin-bottom:14px;line-height:1.5}
+.s-includes{list-style:none;margin-bottom:16px}
+.s-includes li{
+  font-size:0.8rem;color:var(--gray-600);
+  display:flex;align-items:flex-start;gap:7px;padding:2px 0;
+}
+.s-includes li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+.s-pricing{display:flex;align-items:flex-end;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.s-price-original{
+  font-size:0.85rem;color:var(--gray-400);
+  text-decoration:line-through;
+}
+.s-price-offer{
+  font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);
+}
+.s-price-retainer{display:none}
+.s-price-retainer.show{display:block}
+.s-price-one.hide{display:none}
+.offer-pill{
+  font-size:0.7rem;font-weight:700;background:#FEE2E2;color:var(--red);
+  padding:2px 7px;border-radius:4px;letter-spacing:0.03em;
+}
+.s-deliver{font-size:0.75rem;color:var(--gray-400);margin-bottom:16px}
+.s-deliver span{color:var(--navy);font-weight:500}
+.btn-quote{
+  width:100%;padding:10px;border-radius:var(--radius-sm);
+  background:var(--navy);color:var(--white);
+  font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;
+  border:none;cursor:pointer;transition:all 0.2s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-quote:hover{background:var(--amber-dark)}
+
+/* ── PROJECTS ───────────────────────────────────────────── */
+#projects{background:var(--white)}
+.filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.filter-tab{
+  padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500;
+  border:1.5px solid var(--gray-200);color:var(--gray-600);
+  background:transparent;cursor:pointer;transition:all 0.2s;
+  font-family:'DM Sans',sans-serif;
+}
+.filter-tab:hover,.filter-tab.active{
+  background:var(--navy);color:var(--white);border-color:var(--navy);
+}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.p-card{
+  background:var(--off-white);border:1px solid var(--gray-100);
+  border-radius:var(--radius-lg);padding:22px;
+  transition:all 0.2s;
+}
+.p-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.p-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.p-icon{
+  width:38px;height:38px;border-radius:var(--radius-sm);
+  background:var(--navy);color:var(--amber);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.github-stars{
+  display:flex;align-items:center;gap:4px;
+  font-size:0.78rem;color:var(--gray-400);
+}
+.p-card h3{font-size:0.97rem;margin-bottom:6px}
+.p-card p{font-size:0.82rem;color:var(--gray-400);margin-bottom:14px;line-height:1.55}
+.p-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.p-tag{
+  font-size:0.72rem;padding:2px 8px;border-radius:4px;
+  background:var(--gray-100);color:var(--gray-600);font-weight:500;
+}
+.p-links{display:flex;gap:8px}
+.p-link{
+  flex:1;padding:8px;border-radius:var(--radius-sm);
+  font-size:0.78rem;font-weight:600;text-align:center;
+  border:1.5px solid var(--gray-200);color:var(--navy);
+  transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:5px;
+}
+.p-link:hover{border-color:var(--navy);background:var(--navy);color:var(--white)}
+.p-link.demo{background:var(--amber);border-color:var(--amber);color:var(--navy)}
+.p-link.demo:hover{background:var(--amber-dark);border-color:var(--amber-dark);color:var(--white)}
+
+/* ── SKILLS ─────────────────────────────────────────────── */
+#skills{background:var(--off-white)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.skill-group{
+  background:var(--white);border:1px solid var(--gray-100);
+  border-radius:var(--radius-lg);padding:22px;
+}
+.skill-group-title{
+  font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--amber-dark);
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.skill-group-title::after{content:'';flex:1;height:1px;background:var(--gray-100)}
+.skill-pills{display:flex;flex-wrap:wrap;gap:7px}
+.skill-pill{
+  font-size:0.8rem;padding:5px 12px;border-radius:20px;
+  background:var(--gray-50);border:1px solid var(--gray-100);
+  color:var(--navy);font-weight:500;
+}
+
+/* ── EXPERIENCE ─────────────────────────────────────────── */
+#experience{background:var(--white)}
+.timeline{position:relative;padding-left:32px}
+.timeline::before{
+  content:'';position:absolute;left:7px;top:6px;
+  bottom:6px;width:2px;background:var(--gray-100);border-radius:2px;
+}
+.tl-item{position:relative;margin-bottom:36px}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{
+  position:absolute;left:-32px;top:4px;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--white);border:2px solid var(--amber);
+  box-shadow:0 0 0 3px var(--amber-light);
+}
+.tl-item.current .tl-dot{background:var(--amber)}
+.tl-date{font-size:0.75rem;color:var(--amber-dark);font-weight:600;margin-bottom:4px;letter-spacing:0.03em}
+.tl-role{font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:2px}
+.tl-company{font-size:0.85rem;color:var(--gray-600);margin-bottom:6px}
+.tl-desc{font-size:0.83rem;color:var(--gray-400);line-height:1.6}
+
+/* ── TESTIMONIALS ───────────────────────────────────────── */
+#testimonials{background:var(--off-white)}
+.rating-summary{
+  display:flex;align-items:center;gap:16px;margin-bottom:36px;
+  flex-wrap:wrap;
+}
+.rating-big{
+  font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;color:var(--navy);
+}
+.rating-detail{}
+.rating-stars-big{color:var(--amber);font-size:1.1rem;letter-spacing:2px}
+.rating-count{font-size:0.8rem;color:var(--gray-400);margin-top:2px}
+.reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:40px;min-height:60px}
+.review-card{
+  background:var(--white);border:1px solid var(--gray-100);
+  border-radius:var(--radius-lg);padding:20px;
+}
+.review-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.reviewer-info h4{font-size:0.9rem;font-weight:600;color:var(--navy);margin-bottom:2px}
+.reviewer-info .service-badge{
+  font-size:0.7rem;padding:2px 8px;background:var(--amber-light);
+  color:var(--amber-dark);border-radius:4px;font-weight:600;
+}
+.review-stars{color:var(--amber);font-size:0.85rem;letter-spacing:1px}
+.review-text{font-size:0.83rem;color:var(--gray-600);line-height:1.65}
+.no-reviews{
+  grid-column:1/-1;text-align:center;padding:40px;
+  color:var(--gray-400);font-size:0.9rem;
+  background:var(--white);border:1px dashed var(--gray-200);
+  border-radius:var(--radius-lg);
+}
+/* review form */
+.review-form-wrap{
+  background:var(--white);border:1px solid var(--gray-100);
+  border-radius:var(--radius-xl);padding:32px;max-width:640px;
+}
+.review-form-wrap h3{margin-bottom:6px;font-size:1.05rem}
+.review-form-wrap p{font-size:0.83rem;color:var(--gray-400);margin-bottom:24px}
+.star-picker{display:flex;gap:6px;margin-bottom:20px}
+.star-picker span{
+  font-size:1.6rem;cursor:pointer;color:var(--gray-200);
+  transition:color 0.15s;line-height:1;
+}
+.star-picker span.selected,.star-picker span:hover{color:var(--amber)}
+
+/* ── CONTACT ─────────────────────────────────────────────── */
+#contact{background:var(--navy)}
+#contact .section-label{color:var(--amber)}
+#contact .section-title{color:var(--white)}
+#contact .section-sub{color:rgba(255,255,255,0.5)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start}
+.contact-info-item{
+  display:flex;align-items:center;gap:14px;margin-bottom:20px;
+}
+.contact-icon{
+  width:42px;height:42px;border-radius:var(--radius-sm);
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.contact-info-item h4{font-size:0.82rem;color:rgba(255,255,255,0.45);margin-bottom:2px;font-family:'DM Sans',sans-serif}
+.contact-info-item a,.contact-info-item p{font-size:0.92rem;color:rgba(255,255,255,0.9);margin:0}
+.contact-info-item a:hover{color:var(--amber)}
+
+/* ── FORMS (shared) ─────────────────────────────────────── */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{margin-bottom:14px}
+.form-group label{
+  display:block;font-size:0.78rem;font-weight:600;margin-bottom:6px;
+  color:rgba(255,255,255,0.6);letter-spacing:0.03em;text-transform:uppercase;
+}
+.form-group.light label{color:var(--gray-600)}
+.form-group input,.form-group textarea,.form-group select{
+  width:100%;padding:11px 14px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--radius-sm);color:var(--white);
+  font-family:'DM Sans',sans-serif;font-size:0.9rem;
+  transition:border-color 0.2s;outline:none;
+}
+.form-group.light input,.form-group.light textarea,.form-group.light select{
+  background:var(--gray-50);border-color:var(--gray-200);
+  color:var(--navy);
+}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.3)}
+.form-group.light input::placeholder,.form-group.light textarea::placeholder{color:var(--gray-400)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{
+  border-color:var(--amber);
+}
+.form-group.light select option{background:var(--white);color:var(--navy)}
+.form-group textarea{resize:vertical;min-height:110px}
+.btn-submit{
+  background:var(--amber);color:var(--navy);
+  padding:12px 28px;border-radius:var(--radius-sm);
+  font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:700;
+  border:none;cursor:pointer;transition:all 0.2s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-submit:hover{background:#e09610;transform:translateY(-1px)}
+.btn-submit.dark{background:var(--navy);color:var(--white)}
+.btn-submit.dark:hover{background:var(--amber-dark)}
+.form-success{
+  display:none;background:rgba(34,160,91,0.1);border:1px solid rgba(34,160,91,0.3);
+  border-radius:var(--radius-sm);padding:12px 16px;
+  font-size:0.85rem;color:#22A05B;margin-top:10px;
+}
+.form-success.show{display:block}
+
+/* ── FOOTER ─────────────────────────────────────────────── */
+footer{
+  background:#060E16;padding:28px 24px;
+  text-align:center;
+}
+footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
+.footer-links{display:flex;justify-content:center;gap:20px}
+.footer-links a{color:rgba(255,255,255,0.3);font-size:0.8rem;transition:color 0.2s}
+.footer-links a:hover{color:var(--amber)}
+
+/* ── FLOATING WHATSAPP ───────────────────────────────────── */
+.wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:999;
+  width:54px;height:54px;border-radius:50%;
+  background:#25D366;box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all 0.2s;text-decoration:none;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.5)}
+.wa-float svg{width:26px;height:26px;fill:#fff}
+
+/* ── SCROLL ANIMATIONS ───────────────────────────────────── */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.55s ease,transform 0.55s ease}
+.fade-up.visible{opacity:1;transform:none}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .why-grid,.how-grid,.services-grid,.projects-grid,
+  .skills-grid,.reviews-grid,.contact-grid{grid-template-columns:1fr}
+  .services-grid.wide{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .how-grid::before{display:none}
+  section{padding:56px 0}
+  .offer-banner{flex-direction:column;text-align:center}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center;max-width:300px}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div id="announce-bar">
+  🎉 <strong>Launch Offer:</strong> <span>50% OFF</span> for the first 50 projects —
+  <span class="slots" id="slots-left">47 slots left</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span class="dot"></span>Arunprakash B
+      <div class="avail-badge" style="margin-left:10px">
+        <span class="pulse"></span>Available
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact" class="nav-cta">Hire Me</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#projects" onclick="toggleMenu()">Projects</a>
+  <a href="#skills" onclick="toggleMenu()">Skills</a>
+  <a href="#experience" onclick="toggleMenu()">Experience</a>
+  <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg>
+          Chennai, India · Open to Remote
+        </div>
+        <h1>I turn messy data<br/>into <em>decisions.</em></h1>
+        <div class="typewriter-wrap">
+          I'm a <span class="typewriter" id="typewriter"></span>
+        </div>
+        <p class="hero-desc">Data analyst and dashboard builder helping businesses make sense of their numbers — through clean reports, sharp visuals, and smart automation.</p>
+        <div class="hero-rating" id="hero-rating" style="display:none">
+          <span class="stars-display">★★★★★</span>
+          <strong id="avg-rating-hero">5.0</strong>
+          <span>— rated by <span id="review-count-hero">0</span> clients</span>
+        </div>
+        <div class="hero-btns">
+          <a href="#services" class="btn-primary">View Services →</a>
+          <a href="https://wa.me/919791157153?text=Hi%20Arun%2C%20I%27m%20interested%20in%20your%20data%20analysis%20services.%20Can%20we%20discuss%3F" target="_blank" class="btn-primary btn-wa">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Me
+          </a>
+          <a href="#contact" class="btn-secondary">Send a Message</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY HIRE ME -->
+<div id="why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-item fade-up">
+        <div class="why-icon">✅</div>
+        <div>
+          <h4>On-time delivery</h4>
+          <p>Every project delivered within the agreed timeline. No exceptions.</p>
+        </div>
+      </div>
+      <div class="why-item fade-up" style="transition-delay:0.1s">
+        <div class="why-icon">📋</div>
+        <div>
+          <h4>Clean, documented work</h4>
+          <p>Every file is organised, labelled and explained so you can use it independently.</p>
+        </div>
+      </div>
+      <div class="why-item fade-up" style="transition-delay:0.2s">
+        <div class="why-icon">🔁</div>
+        <div>
+          <h4>Free 1 revision included</h4>
+          <p>Not happy with the output? One full revision is included in every project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <span class="section-label">Process</span>
+    <h2 class="section-title">How it works</h2>
+    <p class="section-sub">Simple, transparent, and fast — from your raw data to a finished deliverable in days.</p>
+    <div class="how-grid">
+      <div class="how-card fade-up">
+        <div class="how-num">1</div>
+        <h3>Share your data</h3>
+        <p>Send your file, connect your source, or describe what you need. No tech knowledge required.</p>
+      </div>
+      <div class="how-card fade-up" style="transition-delay:0.15s">
+        <div class="how-num">2</div>
+        <h3>I build it</h3>
+        <p>I clean, analyse, and build your dashboard, report, or automation pipeline — to your requirements.</p>
+      </div>
+      <div class="how-card fade-up" style="transition-delay:0.3s">
+        <div class="how-num">3</div>
+        <h3>You decide</h3>
+        <p>Review the output. Ask for one revision if needed. Then take ownership of a finished, working product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES & PRICING -->
+<section id="services">
+  <div class="container">
+    <span class="section-label">Services & Pricing</span>
+    <h2 class="section-title">What I can build for you</h2>
+    <p class="section-sub">Transparent pricing. No hidden fees. Launch offer active — 50% off for first 50 projects.</p>
+
+    <div class="offer-banner fade-up">
+      <div class="offer-banner-text">
+        <h3>🎉 Launch Offer — 50% off all services</h3>
+        <p>First 50 projects only. Prices shown are already discounted.</p>
+      </div>
+      <div class="offer-slots" id="banner-slots">47 slots remaining</div>
+    </div>
+
+    <!-- Toggle -->
+    <div class="pricing-toggle">
+      <span class="toggle-label active-label" id="lbl-one">One-time project</span>
+      <button class="toggle-btn" id="price-toggle" onclick="togglePricing()" aria-label="Toggle pricing type"></button>
+      <div class="toggle-knob" style="display:none"></div>
+      <span class="toggle-label" id="lbl-ret">Monthly retainer</span>
+    </div>
+
+    <!-- Tier 1 -->
+    <div class="tier-section fade-up">
+      <div class="tier-heading">Tier 1 — Spreadsheet analysis</div>
+      <div class="services-grid">
+        <div class="s-card">
+          <div class="s-icon">📊</div>
+          <h3>Excel / Google Sheets — Analysis only</h3>
+          <p class="s-desc">Data cleaning, EDA, trend identification and a formatted insights report.</p>
+          <ul class="s-includes">
+            <li>Data cleaning & validation</li>
+            <li>Trend & pattern analysis</li>
+            <li>Formatted summary report</li>
+          </ul>
+          <div class="s-pricing">
+            <div class="s-price-one">
+              
+              <div class="s-price-offer">₹2,000 – ₹5,000</div>
+            </div>
+            <div class="s-price-retainer">
+              
+              <div class="s-price-offer">₹6,000/mo</div>
+            </div>
+            <span class="offer-pill">50% OFF</span>
+          </div>
+          <div class="s-deliver">⏱ Delivery: <span>2–3 days</span></div>
+          <button class="btn-quote" onclick="quoteWA('Excel / Google Sheets Analysis')">💬 Get a Quote</button>
+        </div>
+        <div class="s-card featured">
+          <div class="s-icon">📈</div>
+          <h3>Excel / Google Sheets + Dashboard</h3>
+          <p class="s-desc">Full analysis plus hand-built interactive charts, pivot dashboards and slicers.</p>
+          <ul class="s-includes">
+            <li>Everything in analysis-only</li>
+            <li>Interactive pivot dashboard</li>
+            <li>Charts, slicers & conditional formatting</li>
+          </ul>
+          <div class="s-pricing">
+            <div class="s-price-one">
+              
+              <div class="s-price-offer">₹8,000 – ₹18,000</div>
+            </div>
+            <div class="s-price-retainer">
+              
+              <div class="s-price-offer">₹12,000/mo</div>
+            </div>
+            <span class="offer-pill">50% OFF</span>
+          </div>
+          <div class="s-deliver">⏱ Delivery: <span>5–8 days</span></div>
+          <button class="btn-quote" onclick="quoteWA('Excel / Google Sheets Dashboard')">💬 Get a Quote</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier 2 -->
+    <div class="tier-section fade-up">
+      <div class="tier-heading">Tier 2 — Automation & Engineering</div>
+      <div class="services-grid">
+        <div class="s-card">
+          <div class="s-icon">🤖</div>
+          <h3>Sheet Automation — Python</h3>
+          <p class="s-desc">Daily, weekly or monthly auto-reports pushed to Google Sheets or emailed to you.</p>
+          <ul class="s-includes">
+            <li>Automated data collection & push</li>
+            <li>Scheduled daily/weekly/monthly reports</li>
+            <li>Email delivery setup</li>
+          </ul>
+          <div class="s-pricing">
+            <div class="s-price-one">
+              
+              <div class="s-price-offer">₹6,000 – ₹15,000</div>
+            </div>
+            <div class="s-price-retainer">
+              
+              <div class="s-price-offer">₹8,000/mo</div>
+            </div>
+            <span class="offer-pill">50% OFF</span>
+          </div>
+          <div class="s-deliver">⏱ Delivery: <span>4–6 days</span></div>
+          <button class="btn-quote" onclick="quoteWA('Sheet Automation with Python')">💬 Get a Quote</button>
+        </div>
+        <div class="s-card">
+          <div class="s-icon">🗄️</div>
+          <h3>SQL Analysis</h3>
+          <p class="s-desc">Query writing, database analysis and structured reporting from MySQL or PostgreSQL.</p>
+          <ul class="s-includes">
+            <li>Custom query writing</li>
+            <li>Database analysis & reporting</li>
+            <li>Optimised, documented SQL scripts</li>
+          </ul>
+          <div class="s-pricing">
+            <div class="s-price-one">
+              
+              <div class="s-price-offer">₹3,000 – ₹8,000</div>
+            </div>
+            <div class="s-price-retainer">
+              
+              <div class="s-price-offer">₹6,000/mo</div>
+            </div>
+            <span class="offer-pill">50% OFF</span>
+          </div>
+          <div class="s-deliver">⏱ Delivery: <span>2–4 days</span></div>
+          <button class="btn-quote" onclick="quoteWA('SQL Analysis')">💬 Get a Quote</button>
+        </div>
+        <div class="s-card" style="grid-column:1/-1">
+          <div class="s-icon">⚙️</div>
+          <h3>Data Engineering</h3>
+          <p class="s-desc">ETL pipeline design, data cleaning workflows, Medallion Architecture using PySpark and Databricks.</p>
+          <ul class="s-includes" style="columns:2;gap:16px">
+            <li>ETL pipeline design</li>
+            <li>Medallion Architecture (Bronze-Silver-Gold)</li>
+            <li>PySpark / Databricks</li>
+            <li>Data cleaning & transformation workflows</li>
+          </ul>
+          <div class="s-pricing">
+            <div class="s-price-one">
+              
+              <div class="s-price-offer">₹12,000 – ₹35,000</div>
+            </div>
+            <div class="s-price-retainer">
+              <div class="s-price-original">₹40,000/mo</div>
+              <div class="s-price-offer">₹20,000/mo</div>
+            </div>
+            <span class="offer-pill">50% OFF</span>
+          </div>
+          <div class="s-deliver">⏱ Delivery: <span>1–3 weeks</span></div>
+          <button class="btn-quote" style="max-width:260px" onclick="quoteWA('Data Engineering')">💬 Get a Quote</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier 3 -->
+    <div class="tier-section fade-up">
+      <div class="tier-heading">Tier 3 — BI Dashboards</div>
+      <div class="services-grid">
+        <div class="s-card">
+          <div class="s-icon">📉</div>
+          <h3>Basic BI Dashboard</h3>
+          <p class="s-desc">Power BI, Tableau or Looker Studio. Up to 5 visuals, single data source, standard theme.</p>
+          <ul class="s-includes">
+            <li>Up to 5 visuals / charts</li>
+            <li>1 data source connected</li>
+            <li>Power BI · Tableau · Looker Studio</li>
+          </ul>
+          <div class="s-pricing">
+            <div class="s-price-one">
+              
+              <div class="s-price-offer">₹5,000 – ₹10,000</div>
+            </div>
+            <div class="s-price-retainer">
+              
+              <div class="s-price-offer">₹7,000/mo</div>
+            </div>
+            <span class="offer-pill">50% OFF</span>
+          </div>
+          <div class="s-deliver">⏱ Delivery: <span>2–4 days</span></div>
+          <button class="btn-quote" onclick="quoteWA('Basic BI Dashboard')">💬 Get a Quote</button>
+        </div>
+        <div class="s-card featured">
+          <div class="s-icon">🖥️</div>
+          <h3>Advanced BI Dashboard</h3>
+          <p class="s-desc">Multi-source, drilldowns, row-level security, custom theme, 10+ visuals and DAX/LOD expressions.</p>
+          <ul class="s-includes">
+            <li>Multi-source data integration</li>
+            <li>10+ visuals, drilldowns & KPI cards</li>
+            <li>Custom theme & row-level security</li>
+          </ul>
+          <div class="s-pricing">
+            <div class="s-price-one">
+              
+              <div class="s-price-offer">₹15,000 – ₹35,000</div>
+            </div>
+            <div class="s-price-retainer">
+              
+              <div class="s-price-offer">₹25,000/mo</div>
+            </div>
+            <span class="offer-pill">50% OFF</span>
+          </div>
+          <div class="s-deliver">⏱ Delivery: <span>1–2 weeks</span></div>
+          <button class="btn-quote" onclick="quoteWA('Advanced BI Dashboard')">💬 Get a Quote</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier 4 -->
+    <div class="tier-section fade-up">
+      <div class="tier-heading">Tier 4 — AI Services</div>
+      <div class="services-grid wide">
+        <div class="s-card" style="border-color:#0D1B2A">
+          <div class="s-icon">🧠</div>
+          <h3>AI Agent / AI Integration</h3>
+          <p class="s-desc">NL-to-SQL chatbots, LLM integration in dashboards, automated insight generation and GenAI-powered reporting.</p>
+          <ul class="s-includes" style="columns:2;gap:16px">
+            <li>NL-to-SQL chatbot</li>
+            <li>LLM integration in dashboards</li>
+            <li>Automated insight generation</li>
+            <li>GenAI-powered reporting</li>
+          </ul>
+          <div class="s-pricing">
+            <div class="s-price-one">
+              
+              <div class="s-price-offer">₹20,000 – ₹60,000+</div>
+            </div>
+            <div class="s-price-retainer">
+              
+              <div class="s-price-offer">₹40,000/mo</div>
+            </div>
+            <span class="offer-pill">50% OFF</span>
+          </div>
+          <div class="s-deliver">⏱ Delivery: <span>2–4 weeks · scoped per project</span></div>
+          <button class="btn-quote" style="max-width:260px" onclick="quoteWA('AI Agent / AI Integration')">💬 Get a Quote</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <span class="section-label">Portfolio</span>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">Real projects, real outcomes. Filter by type below.</p>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterProjects('all',this)">All</button>
+      <button class="filter-tab" onclick="filterProjects('dashboard',this)">Dashboard</button>
+      <button class="filter-tab" onclick="filterProjects('automation',this)">Automation</button>
+      <button class="filter-tab" onclick="filterProjects('ml',this)">ML / AI</button>
+      <button class="filter-tab" onclick="filterProjects('mis',this)">MIS</button>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+
+      
+
+      <div class="p-card fade-up" data-tags="ml,dashboard,automation" style="transition-delay:0.1s">
+        <div class="p-card-top">
+          <div class="p-icon">🎯</div>
+          <div class="github-stars" id="stars-jio">⭐ —</div>
+        </div>
+        <h3>JioHotstar Ad Vision</h3>
+        <p>YOLO-based brand logo detection in cricket broadcast video (85% accuracy). End-to-end ETL → MySQL pipeline, Plotly dashboards and a GenAI NL-to-SQL chatbot via Streamlit.</p>
+        <div class="p-tags">
+          <span class="p-tag">YOLO</span><span class="p-tag">Computer Vision</span><span class="p-tag">MySQL</span><span class="p-tag">GenAI</span><span class="p-tag">Streamlit</span>
+        </div>
+        <div class="p-links">
+          <a href="https://github.com/arun8nov/JioHotstar-Ad-Vision" target="_blank" class="p-link">GitHub →</a>
+          <a href="https://github.com/arun8nov/JioHotstar-Ad-Vision" target="_blank" class="p-link demo">Live Demo ↗</a>
+        </div>
+      </div>
+
+      <div class="p-card fade-up" data-tags="ml,dashboard">
+        <div class="p-card-top">
+          <div class="p-icon">👥</div>
+          <div class="github-stars" id="stars-attrition">⭐ —</div>
+        </div>
+        <h3>Employee Attrition Dashboard</h3>
+        <p>Random Forest & XGBoost classification pipeline (85%+ accuracy). SHAP-driven churn analysis, HR metrics tracking and interactive dashboards to support workforce retention strategy.</p>
+        <div class="p-tags">
+          <span class="p-tag">Python</span><span class="p-tag">XGBoost</span><span class="p-tag">Streamlit</span><span class="p-tag">Power BI</span>
+        </div>
+        <div class="p-links">
+          <a href="https://github.com/arun8nov/Employee_Attrition" target="_blank" class="p-link">GitHub →</a>
+          <a href="https://github.com/arun8nov/Employee_Attrition" target="_blank" class="p-link demo">Live Demo ↗</a>
+        </div>
+      </div>
+
+      <div class="p-card fade-up" data-tags="automation,dashboard" style="transition-delay:0.1s">
+        <div class="p-card-top">
+          <div class="p-icon">🌧️</div>
+          <div class="github-stars" id="stars-rainfall">⭐ —</div>
+        </div>
+        <h3>TN Rainfall Data Automation</h3>
+        <p>Automated ETL pipeline for Tamil Nadu meteorological data. Real-time weather pattern analysis and predictive insights for agricultural planning via interactive Streamlit dashboard.</p>
+        <div class="p-tags">
+          <span class="p-tag">ETL</span><span class="p-tag">Python</span><span class="p-tag">Streamlit</span><span class="p-tag">Automation</span>
+        </div>
+        <div class="p-links">
+          <a href="https://github.com/arun8nov/TN_RainfallData_Automation" target="_blank" class="p-link">GitHub →</a>
+          <a href="https://github.com/arun8nov/TN_RainfallData_Automation" target="_blank" class="p-link demo">Live Demo ↗</a>
+        </div>
+      </div>
+
+      <div class="p-card fade-up" data-tags="ml">
+        <div class="p-card-top">
+          <div class="p-icon">💬</div>
+          <div class="github-stars" id="stars-nlp">⭐ —</div>
+        </div>
+        <h3>AI Echo — NLP Sentiment Analysis</h3>
+        <p>End-to-end NLP pipeline using LSTM, BERT and Hugging Face Transformers for multi-class sentiment classification. SMOTE for class imbalance, deployed via Streamlit and Dash.</p>
+        <div class="p-tags">
+          <span class="p-tag">BERT</span><span class="p-tag">LSTM</span><span class="p-tag">NLP</span><span class="p-tag">Streamlit</span><span class="p-tag">SMOTE</span>
+        </div>
+        <div class="p-links">
+          <a href="https://github.com/arun8nov/AI-Echo-NLP-Sentimental-Analysis" target="_blank" class="p-link">GitHub →</a>
+          <a href="https://github.com/arun8nov/AI-Echo-NLP-Sentimental-Analysis" target="_blank" class="p-link demo">Live Demo ↗</a>
+        </div>
+      </div>
+
+      <div class="p-card fade-up" data-tags="ml" style="transition-delay:0.1s">
+        <div class="p-card-top">
+          <div class="p-icon">🏥</div>
+          <div class="github-stars" id="stars-disease">⭐ —</div>
+        </div>
+        <h3>Multiple Disease Prediction</h3>
+        <p>Multi-class clinical ML system predicting CKD, Chronic Liver Disease and Parkinson's from patient lab data. Logistic Regression + Random Forest, up to 99% accuracy.</p>
+        <div class="p-tags">
+          <span class="p-tag">Scikit-learn</span><span class="p-tag">Random Forest</span><span class="p-tag">Healthcare</span><span class="p-tag">Streamlit</span>
+        </div>
+        <div class="p-links">
+          <a href="https://github.com/arun8nov/Multiple-Disease-prediction" target="_blank" class="p-link">GitHub →</a>
+          <a href="https://github.com/arun8nov/Multiple-Disease-prediction" target="_blank" class="p-link demo">Live Demo ↗</a>
+        </div>
+      </div>
+
+      <div class="p-card fade-up" data-tags="automation,dashboard">
+        <div class="p-card-top">
+          <div class="p-icon">🛒</div>
+          <div class="github-stars" id="stars-ecomm">⭐ —</div>
+        </div>
+        <h3>E-Commerce Data Lakehouse</h3>
+        <p>Scalable ML-ready data pipeline on Databricks using PySpark and Medallion Architecture. Raw transactional data transformed into feature-ready aggregates for downstream modelling.</p>
+        <div class="p-tags">
+          <span class="p-tag">Databricks</span><span class="p-tag">PySpark</span><span class="p-tag">Medallion</span><span class="p-tag">ETL</span>
+        </div>
+        <div class="p-links">
+          <a href="https://github.com/arun8nov/E_Comm" target="_blank" class="p-link">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="p-card fade-up" data-tags="dashboard" style="transition-delay:0.1s">
+        <div class="p-card-top">
+          <div class="p-icon">🌾</div>
+          <div class="github-stars" id="stars-agri">⭐ —</div>
+        </div>
+        <h3>India Agricultural Data Analysis</h3>
+        <p>Comprehensive analysis of Indian crop production, weather patterns and market prices. Actionable insights for farmers and policymakers via Power BI dashboards and trend forecasting.</p>
+        <div class="p-tags">
+          <span class="p-tag">Power BI</span><span class="p-tag">Python</span><span class="p-tag">EDA</span><span class="p-tag">Forecasting</span>
+        </div>
+        <div class="p-links">
+          <a href="https://github.com/arun8nov/India-AgriData" target="_blank" class="p-link">GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <span class="section-label">Skills</span>
+    <h2 class="section-title">Technical skills</h2>
+    <p class="section-sub">Tools and techniques I use to get the job done.</p>
+    <div class="skills-grid">
+      <div class="skill-group fade-up">
+        <div class="skill-group-title">Spreadsheet & BI Tools</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Excel Advanced</span>
+          <span class="skill-pill">Google Sheets</span>
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">Tableau</span>
+          <span class="skill-pill">Looker Studio</span>
+          <span class="skill-pill">Streamlit</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:0.1s">
+        <div class="skill-group-title">Languages & Databases</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">SQL / MySQL</span>
+          <span class="skill-pill">PySpark</span>
+          <span class="skill-pill">Spark SQL</span>
+          <span class="skill-pill">Databricks</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:0.2s">
+        <div class="skill-group-title">Techniques</div>
+        <div class="skill-pills">
+          <span class="skill-pill">ETL Pipelines</span>
+          <span class="skill-pill">MIS Reporting</span>
+          <span class="skill-pill">EDA</span>
+          <span class="skill-pill">Dashboarding</span>
+          <span class="skill-pill">KPI Tracking</span>
+          <span class="skill-pill">Medallion Architecture</span>
+          <span class="skill-pill">Predictive Analytics</span>
+          <span class="skill-pill">NLP</span>
+          <span class="skill-pill">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <span class="section-label">Career</span>
+    <h2 class="section-title">Work experience</h2>
+    <p class="section-sub" style="margin-bottom:48px">A track record built across data, operations, and engineering roles.</p>
+    <div class="timeline">
+      <div class="tl-item current fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">NOV 2025 — PRESENT</div>
+        <div class="tl-role">Associate — AI/ML Team</div>
+        <div class="tl-company">Hurix Systems Private Limited · Chennai</div>
+        <div class="tl-desc">Curated and validated multimodal training datasets (text, image, audio), engineering quality-assurance workflows that directly improved model benchmark accuracy.</div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">JAN 2025 — MAR 2025</div>
+        <div class="tl-role">Data Analyst Intern</div>
+        <div class="tl-company">Unified Mentor Pvt. Ltd · Remote</div>
+        <div class="tl-desc">Built 5+ interactive dashboards in Power BI and Tableau; developed Python data models to track sales funnels and campaign performance metrics.</div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">JUN 2020 — NOV 2025</div>
+        <div class="tl-role">IT Support & Data Entry Executive</div>
+        <div class="tl-company">GodSend Technology · Virudhunagar</div>
+        <div class="tl-desc">Maintained structured data records across billing and reporting systems; implemented process improvements that enhanced data accuracy and operational efficiency.</div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">MAY 2019 — MAR 2020</div>
+        <div class="tl-role">Production Engineer</div>
+        <div class="tl-company">Flex India Pvt Ltd · Chennai</div>
+        <div class="tl-desc">Managed production workflow and reporting, collaborating with inventory and logistics teams on operational analytics.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <span class="section-label">Reviews</span>
+    <h2 class="section-title">What clients say</h2>
+
+    <div class="rating-summary" id="rating-summary" style="display:none">
+      <div class="rating-big" id="avg-rating-display">5.0</div>
+      <div class="rating-detail">
+        <div class="rating-stars-big" id="avg-stars-display">★★★★★</div>
+        <div class="rating-count">Based on <span id="review-count-display">0</span> reviews</div>
+      </div>
+    </div>
+
+    <div class="reviews-grid" id="reviews-grid">
+      <div class="no-reviews">
+        <div style="font-size:2rem;margin-bottom:8px">⭐</div>
+        <div>No reviews yet — be the first client to leave one below!</div>
+      </div>
+    </div>
+
+    <!-- Review form -->
+    <div class="review-form-wrap fade-up">
+      <h3>Leave a review</h3>
+      <p>Worked with me? I'd love your feedback.</p>
+      <div>
+        <div class="form-row">
+          <div class="form-group light">
+            <label>Your name</label>
+            <input type="text" id="r-name" placeholder="e.g. Priya S."/>
+          </div>
+          <div class="form-group light">
+            <label>Service hired</label>
+            <select id="r-service">
+              <option value="">Select a service</option>
+              <option>Excel / Google Sheets Analysis</option>
+              <option>Excel / Google Sheets Dashboard</option>
+              <option>Sheet Automation — Python</option>
+              <option>SQL Analysis</option>
+              <option>Data Engineering</option>
+              <option>Basic BI Dashboard</option>
+              <option>Advanced BI Dashboard</option>
+              <option>AI Agent / AI Integration</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group light">
+          <label>Your rating</label>
+          <div class="star-picker" id="star-picker">
+            <span data-val="1">★</span>
+            <span data-val="2">★</span>
+            <span data-val="3">★</span>
+            <span data-val="4">★</span>
+            <span data-val="5">★</span>
+          </div>
+        </div>
+        <div class="form-group light">
+          <label>Your review</label>
+          <textarea id="r-message" placeholder="Tell others about your experience..." rows="3"></textarea>
+        </div>
+        <button class="btn-submit dark" onclick="submitReview()">Submit Review ✓</button>
+        <div class="form-success" id="review-success">✅ Thank you! Your review has been submitted and will appear after approval.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <span class="section-label">Contact</span>
+    <h2 class="section-title">Let's work together</h2>
+    <p class="section-sub">Have a project in mind? Drop a message and I'll get back within 24 hours.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-item fade-up">
+          <div class="contact-icon">📧</div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:arunbabuprakash@gmail.com">arunbabuprakash@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-info-item fade-up">
+          <div class="contact-icon">💼</div>
+          <div>
+            <h4>LinkedIn</h4>
+            <a href="https://www.linkedin.com/in/arun8nov" target="_blank">linkedin.com/in/arun8nov</a>
+          </div>
+        </div>
+        <div class="contact-info-item fade-up">
+          <div class="contact-icon">🐙</div>
+          <div>
+            <h4>GitHub</h4>
+            <a href="https://github.com/arun8nov" target="_blank">github.com/arun8nov</a>
+          </div>
+        </div>
+        <div class="contact-info-item fade-up">
+          <div class="contact-icon">📱</div>
+          <div>
+            <h4>WhatsApp</h4>
+            <a href="https://wa.me/919791157153" target="_blank">+91-9791157153</a>
+          </div>
+        </div>
+        <div style="margin-top:24px">
+          <a href="https://wa.me/919791157153?text=Hi%20Arun%2C%20I%27d%20like%20to%20discuss%20a%20project%20with%20you." target="_blank" class="btn-primary btn-wa">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-xl);padding:32px">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" id="c-name" placeholder="Your name"/>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="c-email" placeholder="your@email.com"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Service interested in</label>
+            <select id="c-service" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff">
+              <option value="" style="background:#0D1B2A">Select a service</option>
+              <option style="background:#0D1B2A">Excel / Google Sheets Analysis</option>
+              <option style="background:#0D1B2A">Excel / Google Sheets Dashboard</option>
+              <option style="background:#0D1B2A">Sheet Automation — Python</option>
+              <option style="background:#0D1B2A">SQL Analysis</option>
+              <option style="background:#0D1B2A">Data Engineering</option>
+              <option style="background:#0D1B2A">Basic BI Dashboard</option>
+              <option style="background:#0D1B2A">Advanced BI Dashboard</option>
+              <option style="background:#0D1B2A">AI Agent / AI Integration</option>
+              <option style="background:#0D1B2A">Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea id="c-message" placeholder="Tell me about your project, data, and what you need..."></textarea>
+          </div>
+          <button class="btn-submit" onclick="submitContact()">Send Message →</button>
+          <div class="form-success" id="contact-success">✅ Message sent! I'll reply within 24 hours.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built by Arunprakash B · Chennai, India · 2025</p>
+  <div class="footer-links">
+    <a href="mailto:arunbabuprakash@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/arun8nov" target="_blank">LinkedIn</a>
+    <a href="https://github.com/arun8nov" target="_blank">GitHub</a>
+    <a href="https://wa.me/919791157153" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a class="wa-float" href="https://wa.me/919791157153?text=Hi%20Arun%2C%20I%27m%20interested%20in%20your%20data%20analysis%20services!" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ── CONFIG ── Replace with your Apps Script Web App URL after deployment
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzunUSrCWXa2jnmxS7b-zNsNild1uEwzgyCBQvtI8FhfrnVJD7ewQctUcS487LXP8CYBw/exec';
+const WA_NUMBER = '919791157153';
+
+// ── TYPEWRITER ──────────────────────────────────────────
+const roles = ['Data Analyst','Dashboard Builder','MIS Specialist','Python Automation Expert','BI Developer'];
+let ri = 0, ci = 0, deleting = false;
+function typeWrite() {
+  const el = document.getElementById('typewriter');
+  if (!el) return;
+  const word = roles[ri];
+  if (!deleting) {
+    el.textContent = word.slice(0, ++ci);
+    if (ci === word.length) { deleting = true; setTimeout(typeWrite, 1800); return; }
+  } else {
+    el.textContent = word.slice(0, --ci);
+    if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+  }
+  setTimeout(typeWrite, deleting ? 55 : 95);
+}
+typeWrite();
+
+// ── MOBILE MENU ─────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// ── SCROLL FADE ─────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+// ── PROJECT FILTER ──────────────────────────────────────
+function filterProjects(tag, btn) {
+  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.p-card').forEach(card => {
+    const tags = card.dataset.tags || '';
+    card.style.display = (tag === 'all' || tags.includes(tag)) ? '' : 'none';
+  });
+}
+
+// ── PRICING TOGGLE ──────────────────────────────────────
+let isRetainer = false;
+function togglePricing() {
+  isRetainer = !isRetainer;
+  const btn = document.getElementById('price-toggle');
+  btn.classList.toggle('active', isRetainer);
+  // move knob
+  btn.innerHTML = `<div class="toggle-knob"></div>`;
+  document.getElementById('lbl-one').classList.toggle('active-label', !isRetainer);
+  document.getElementById('lbl-ret').classList.toggle('active-label', isRetainer);
+  document.querySelectorAll('.s-price-one').forEach(el => el.classList.toggle('hide', isRetainer));
+  document.querySelectorAll('.s-price-retainer').forEach(el => el.classList.toggle('show', isRetainer));
+}
+
+// ── STAR PICKER ─────────────────────────────────────────
+let selectedStars = 0;
+document.querySelectorAll('#star-picker span').forEach(s => {
+  s.addEventListener('mouseover', () => {
+    const v = +s.dataset.val;
+    document.querySelectorAll('#star-picker span').forEach((x,i) => x.classList.toggle('selected', i < v));
+  });
+  s.addEventListener('click', () => { selectedStars = +s.dataset.val; });
+  s.addEventListener('mouseout', () => {
+    document.querySelectorAll('#star-picker span').forEach((x,i) => x.classList.toggle('selected', i < selectedStars));
+  });
+});
+
+// ── WHATSAPP QUOTE ──────────────────────────────────────
+function quoteWA(service) {
+  const msg = encodeURIComponent(`Hi Arun, I'm interested in your "${service}" service. Can we discuss my project?`);
+  window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+}
+
+// ── CONTACT FORM ────────────────────────────────────────
+async function submitContact() {
+  const name = document.getElementById('c-name').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+  const service = document.getElementById('c-service').value;
+  const message = document.getElementById('c-message').value.trim();
+  if (!name || !email || !message) { alert('Please fill in name, email and message.'); return; }
+  if (APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzunUSrCWXa2jnmxS7b-zNsNild1uEwzgyCBQvtI8FhfrnVJD7ewQctUcS487LXP8CYBw/exec') {
+    document.getElementById('contact-success').classList.add('show');
+    return;
+  }
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ type:'lead', name, email, service, message, timestamp: new Date().toISOString() })
+    });
+    document.getElementById('contact-success').classList.add('show');
+    document.getElementById('c-name').value='';
+    document.getElementById('c-email').value='';
+    document.getElementById('c-message').value='';
+  } catch(e) { alert('Something went wrong. Please try WhatsApp instead.'); }
+}
+
+// ── REVIEW FORM ─────────────────────────────────────────
+async function submitReview() {
+  const name = document.getElementById('r-name').value.trim();
+  const service = document.getElementById('r-service').value;
+  const message = document.getElementById('r-message').value.trim();
+  if (!name || !service || !selectedStars || !message) { alert('Please fill all fields and select a star rating.'); return; }
+  if (APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzunUSrCWXa2jnmxS7b-zNsNild1uEwzgyCBQvtI8FhfrnVJD7ewQctUcS487LXP8CYBw/exec') {
+    document.getElementById('review-success').classList.add('show');
+    return;
+  }
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ type:'review', name, service, stars: selectedStars, message, timestamp: new Date().toISOString() })
+    });
+    document.getElementById('review-success').classList.add('show');
+    document.getElementById('r-name').value='';
+    document.getElementById('r-service').value='';
+    document.getElementById('r-message').value='';
+    selectedStars=0;
+    document.querySelectorAll('#star-picker span').forEach(s=>s.classList.remove('selected'));
+  } catch(e) { alert('Something went wrong. Please try again.'); }
+}
+
+// ── LOAD APPROVED REVIEWS ────────────────────────────────
+async function loadReviews() {
+  if (APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzunUSrCWXa2jnmxS7b-zNsNild1uEwzgyCBQvtI8FhfrnVJD7ewQctUcS487LXP8CYBw/exec') return;
+  try {
+    const res = await fetch(APPS_SCRIPT_URL + '?type=reviews');
+    const data = await res.json();
+    if (!data.reviews || data.reviews.length === 0) return;
+    const grid = document.getElementById('reviews-grid');
+    grid.innerHTML = '';
+    let total = 0;
+    data.reviews.forEach(r => {
+      total += r.stars;
+      const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+      grid.innerHTML += `
+        <div class="review-card fade-up">
+          <div class="review-card-top">
+            <div class="reviewer-info">
+              <h4>${r.name}</h4>
+              <span class="service-badge">${r.service}</span>
+            </div>
+            <div class="review-stars">${stars}</div>
+          </div>
+          <p class="review-text">${r.message}</p>
+        </div>`;
+    });
+    const avg = (total / data.reviews.length).toFixed(1);
+    const count = data.reviews.length;
+    // update avg displays
+    document.getElementById('avg-rating-display').textContent = avg;
+    document.getElementById('review-count-display').textContent = count;
+    document.getElementById('rating-summary').style.display = 'flex';
+    // hero rating
+    if (count >= 3) {
+      document.getElementById('avg-rating-hero').textContent = avg;
+      document.getElementById('review-count-hero').textContent = count;
+      document.getElementById('hero-rating').style.display = 'inline-flex';
+    }
+    // re-observe new fade-up elements
+    document.querySelectorAll('.review-card.fade-up').forEach(el => io.observe(el));
+  } catch(e) { /* silently fail */ }
+}
+loadReviews();
+
+// ── GITHUB STARS ─────────────────────────────────────────
+const repoStars = [
+  ['stars-jio','arun8nov/JioHotstar-Ad-Vision'],
+  ['stars-attrition','arun8nov/Employee_Attrition'],
+  ['stars-rainfall','arun8nov/TN_RainfallData_Automation'],
+  ['stars-nlp','arun8nov/AI-Echo-NLP-Sentimental-Analysis'],
+  ['stars-disease','arun8nov/Multiple-Disease-prediction'],
+  ['stars-ecomm','arun8nov/E_Comm'],
+  ['stars-agri','arun8nov/India-AgriData'],
+];
+repoStars.forEach(([elId, repo]) => {
+  fetch(`https://api.github.com/repos/${repo}`)
+    .then(r => r.json())
+    .then(d => {
+      const el = document.getElementById(elId);
+      if (el && d.stargazers_count !== undefined) el.textContent = `⭐ ${d.stargazers_count}`;
+    }).catch(()=>{});
+});
+</script>
+</body>
+</html>
