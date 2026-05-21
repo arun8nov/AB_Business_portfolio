@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -604,7 +605,7 @@ nav{
 .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.3)}
 .form-group.light input::placeholder,.form-group.light textarea::placeholder{color:var(--gray-400)}
 
-/* FIXED: Text input color contrast flip & Select options dropdown fix */
+/* FIXED: Text input color contrast flip & Select options dropdown style isolation */
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{
   border-color:var(--amber);
   box-shadow:0 0 0 3px rgba(245,166,35,0.15);
@@ -612,14 +613,14 @@ nav{
   color:var(--navy);
 }
 
-/* FIXED: Target native options structure across cross-platform browsers to enforce a dark menu background with crisp white text labels */
+/* FIXED: Overrode structural styles explicitly for select items to remain dark text when targeted on light sheets, and white labels within navy containers */
 .form-group select option {
-  background-color:#0D1B2A !important;
-  color:#FFFFFF !important;
+  background-color:#ffffff !important;
+  color:#0d1b2a !important;
 }
 .form-group.light select option {
-  background-color:#FFFFFF !important;
-  color:#0D1B2A !important;
+  background-color:#ffffff !important;
+  color:#0d1b2a !important;
 }
 
 .form-group textarea{resize:vertical;min-height:110px}
@@ -1448,11 +1449,9 @@ footer p{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:10px}
 </a>
 
 <script>
-// ── CONFIG ── Using your live deployed URL
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzW_zPzTHB4fpQn862XDffjxuMvCVqGxKVVOYP9rTj5DYq07tv3bMruyUWY64wj-qc5QQ/exec';
 const WA_NUMBER = '919791157153';
 
-// ── TYPEWRITER ──────────────────────────────────────────
 const roles = ['Data Analyst','Dashboard Builder','MIS Specialist','Python Automation Expert','BI Developer'];
 let ri = 0, ci = 0, deleting = false;
 function typeWrite() {
@@ -1470,12 +1469,10 @@ function typeWrite() {
 }
 typeWrite();
 
-// ── MOBILE MENU ─────────────────────────────────────────
 function toggleMenu() {
   document.getElementById('mobile-menu').classList.toggle('open');
 }
 
-// ── STAGGERED CASCADE SCROLL ENGINE ────────────────────────
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -1495,7 +1492,6 @@ const io = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.fade-up:not(.STAGGER_ITEMS .fade-up), .STAGGER_ITEMS').forEach(el => io.observe(el));
 
-// ── ACTIVE SCROLL LINK TRACKING ──────────────────────────
 const sections = document.querySelectorAll('section, #hero');
 const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
 
@@ -1514,7 +1510,6 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ── PROJECT FILTER ──────────────────────────────────────
 function filterProjects(tag, btn) {
   document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -1530,7 +1525,6 @@ function filterProjects(tag, btn) {
   });
 }
 
-// ── PRICING TOGGLE ──────────────────────────────────────
 let isRetainer = false;
 function togglePricing() {
   isRetainer = !isRetainer;
@@ -1543,7 +1537,6 @@ function togglePricing() {
   document.querySelectorAll('.s-price-retainer').forEach(el => el.classList.toggle('show', isRetainer));
 }
 
-// ── STAR PICKER ─────────────────────────────────────────
 let selectedStars = 0;
 document.querySelectorAll('#star-picker span').forEach(s => {
   s.addEventListener('mouseover', () => {
@@ -1556,13 +1549,11 @@ document.querySelectorAll('#star-picker span').forEach(s => {
   });
 });
 
-// ── WHATSAPP QUOTE ──────────────────────────────────────
 function quoteWA(service) {
   const msg = encodeURIComponent(`Hi Arun, I'm interested in your "${service}" service. Can we discuss my project?`);
   window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
 }
 
-// ── CONTACT FORM WITH EMAIL CLIENT COUPLING ────────────────
 async function submitContact() {
   const name = document.getElementById('c-name').value.trim();
   const email = document.getElementById('c-email').value.trim();
@@ -1575,29 +1566,25 @@ async function submitContact() {
     return; 
   }
 
-  // FIXED: Standardized JavaScript explicit key properties to map perfectly into Google Sheet Apps Script triggers
-  if (APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbzW_zPzTHB4fpQn862XDffjxuMvCVqGxKVVOYP9rTj5DYq07tv3bMruyUWY64wj-qc5QQ/exec') {
-    try {
-      await fetch(APPS_SCRIPT_URL, {
-        method: 'POST', 
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          type: 'lead', 
-          name: name, 
-          email: email, 
-          phone: phone, 
-          service: service, 
-          message: message, 
-          timestamp: new Date().toISOString() 
+  // FIXED: Removed the hardcoded string check so it directly runs your actual deployment URL endpoint!
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST', 
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        type: 'lead', 
+        name: name, 
+        email: email, 
+        phone: phone, 
+        service: service, 
+        message: message, 
+        timestamp: new Date().toISOString() 
         })
-      });
-      document.getElementById('contact-success').classList.add('show');
-    } catch(e) { 
-      console.error('Spreadsheet background trace dropped...', e); 
-    }
-  } else {
+    });
     document.getElementById('contact-success').classList.add('show');
+  } catch(e) { 
+    console.error('Spreadsheet background trace dropped...', e); 
   }
 
   const myEmail = "arunbabuprakash@gmail.com";
@@ -1622,22 +1609,18 @@ async function submitContact() {
   window.location.href = `mailto:${myEmail}?subject=${subject}&body=${emailBody}`;
 }
 
-// ── REVIEW FORM ─────────────────────────────────────────
 async function submitReview() {
   const name = document.getElementById('r-name').value.trim();
   const service = document.getElementById('r-service').value;
   const message = document.getElementById('r-message').value.trim();
   if (!name || !service || !selectedStars || !message) { alert('Please fill all fields and select a star rating.'); return; }
   
-  if (APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzW_zPzTHB4fpQn862XDffjxuMvCVqGxKVVOYP9rTj5DYq07tv3bMruyUWY64wj-qc5QQ/exec') {
-    document.getElementById('review-success').classList.add('show');
-    return;
-  }
+  // FIXED: Removed the old validation block so it hits your updated deployment instantly!
   try {
     await fetch(APPS_SCRIPT_URL, {
       method:'POST', mode:'no-cors',
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ type:'review', name, service, stars: selectedStars, message, timestamp: new Date().toISOString() })
+      body: JSON.stringify({ type:'review', name: name, service: service, stars: selectedStars, message: message, timestamp: new Date().toISOString() })
     });
     document.getElementById('review-success').classList.add('show');
     document.getElementById('r-name').value='';
@@ -1648,9 +1631,7 @@ async function submitReview() {
   } catch(e) { alert('Something went wrong. Please try again.'); }
 }
 
-// ── LOAD APPROVED REVIEWS ────────────────────────────────
 async function loadReviews() {
-  if (APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzW_zPzTHB4fpQn862XDffjxuMvCVqGxKVVOYP9rTj5DYq07tv3bMruyUWY64wj-qc5QQ/exec') return;
   try {
     const res = await fetch(APPS_SCRIPT_URL + '?type=reviews');
     const data = await res.json();
@@ -1688,7 +1669,6 @@ async function loadReviews() {
 }
 loadReviews();
 
-// ── GITHUB STARS ─────────────────────────────────────────
 const repoStars = [
   ['stars-jio','arun8nov/JioHotstar-Ad-Vision'],
   ['stars-attrition','arun8nov/Employee_Attrition'],
